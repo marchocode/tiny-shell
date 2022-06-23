@@ -14,6 +14,7 @@ yum makecache fast
 yum -y install docker-ce
 
 echo "4. config docker hub mirrors"
+mkdir -p /etc/docker
 echo '{"registry-mirrors": ["https://registry.docker-cn.com"]}' > /etc/docker/daemon.json
 
 echo "5. start docker service"
