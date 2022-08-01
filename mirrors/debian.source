@@ -1,0 +1,11 @@
+deb http://host/debian/ code main non-free contrib
+deb-src http://host/debian/ code main non-free contrib
+
+deb http://host/debian/ code-updates main non-free contrib
+deb-src http://host/debian/ code-updates main non-free contrib
+
+deb http://host/debian/ code-backports main non-free contrib
+deb-src http://host/debian/ code-backports main non-free contrib
+
+deb http://host/debian-security/ code/updates main non-free contrib
+deb-src http://host/debian-security/ code/updates main non-free contrib
