@@ -48,3 +48,5 @@ wget
 [DebianRepository/UseThirdParty - Debian Wiki](https://wiki.debian.org/DebianRepository/UseThirdParty)
 
 [https://mirrors.ustc.edu.cn/repogen/](https://mirrors.ustc.edu.cn/repogen/)
+
+[mirror](https://www.debian.org/mirror/sponsors.zh-cn.html)

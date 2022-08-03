@@ -1,0 +1,11 @@
+deb https://host/debian/ buster main contrib non-free
+#deb-src https://host/debian/ buster main contrib non-free
+
+deb https://host/debian/ buster-updates main contrib non-free
+#deb-src https://host/debian/ buster-updates main contrib non-free
+
+deb https://host/debian/ buster-backports main contrib non-free
+#deb-src https://host/debian/ buster-backports main contrib non-free
+
+deb https://host/debian-security/ buster/updates main contrib non-free
+#deb-src https://host/debian-security/ buster/updates main contrib non-free
