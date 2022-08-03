@@ -1,0 +1,11 @@
+deb https://host/debian/ bullseye main contrib non-free
+#deb-src https://host/debian/ bullseye main contrib non-free
+
+deb https://host/debian/ bullseye-updates main contrib non-free
+#deb-src https://host/debian/ bullseye-updates main contrib non-free
+
+deb https://host/debian/ bullseye-backports main contrib non-free
+#deb-src https://host/debian/ bullseye-backports main contrib non-free
+
+deb https://host/debian-security/ bullseye-security main contrib non-free
+#deb-src https://host/debian-security/ bullseye-security main contrib non-free

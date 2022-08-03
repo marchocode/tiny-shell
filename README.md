@@ -46,3 +46,5 @@ wget
 [Install Docker Engine on Debian | Docker Documentation](https://docs.docker.com/engine/install/debian/)
 
 [DebianRepository/UseThirdParty - Debian Wiki](https://wiki.debian.org/DebianRepository/UseThirdParty)
+
+[https://mirrors.ustc.edu.cn/repogen/](https://mirrors.ustc.edu.cn/repogen/)
