@@ -59,7 +59,7 @@ wget --no-check-certificate -O update-mirrors.sh https://gitee.com/marchocode/sh
 |        | 9 (stretch) 更旧的稳定        | :heavy_check_mark: |
 |        | 10 (buster) 旧的稳定         | :heavy_check_mark: |
 |        | 11 (bullseye) 稳定版本       | :heavy_check_mark: |
-| Ubuntu | ?                        | ?                  |
+| Ubuntu | Ubuntu 20.04.3 LTS (Focal Fossa)                        | :heavy_check_mark:                  |
 | ?      | ?                        | ?                  |
 | ?      | ?                        | ?                  |
 | ?      | ?                        | ?                  |

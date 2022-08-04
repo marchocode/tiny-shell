@@ -14,7 +14,7 @@ VERSION_CODENAME=`lsb_release -sc`
 
 GITEE_RAW="https://gitee.com/marchocode/shell/raw/master"
 TARGET=".sources.list"
-BACKUP=".sources.list.old"
+BACKUP="sources.list.old"
 
 
 echo "-----------------A.Loading Mirrors----------------------------"
@@ -75,7 +75,7 @@ sed -i 's/host/'${HOST_URL}'/g' ${TARGET}
 echo ""
 echo "-----------------D.Backup Old Configuation----------------------------"
 echo ""
-cp -n /etc/apt/sources.list old.sources.list
+cp -n /etc/apt/sources.list ${BACKUP}
 
 echo ""
 echo "-----------------E.Finish----------------------------"
