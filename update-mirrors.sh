@@ -10,7 +10,7 @@ echo ""
 
 
 ID=`cat /etc/os-release | grep -w "ID" | cut -d "=" -f 2`
-VERSION_CODENAME=`cat /etc/os-release | grep -w "VERSION_CODENAME" | cut -d "=" -f 2`
+VERSION_CODENAME=`lsb_release -sc`
 
 GITEE_RAW="https://gitee.com/marchocode/shell/raw/master"
 TARGET=".sources.list"
@@ -19,7 +19,7 @@ BACKUP=".sources.list.old"
 
 echo "-----------------A.Loading Mirrors----------------------------"
 echo ""
-MIRRORS=(`wget -q -O - ${GITEE_RAW}/host.mirrors`)
+MIRRORS=(`wget --no-check-certificate -q -O - ${GITEE_RAW}/host.mirrors`)
 
 for (( i=0; i<${#MIRRORS[@]}; i++ ));
 do
@@ -69,7 +69,7 @@ echo ""
 echo ""
 echo "-----------------C.Downloading Template----------------------------"
 echo ""
-wget -q -O ${TARGET} ${GITEE_RAW}/mirrors/${VERSION_CODENAME}.sources.list
+wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/mirrors/${VERSION_CODENAME}.sources.list
 sed -i 's/host/'${HOST_URL}'/g' ${TARGET}
 
 echo ""
@@ -81,4 +81,4 @@ echo ""
 echo "-----------------E.Finish----------------------------"
 echo ""
 cat ${TARGET} > /etc/apt/sources.list
-echo "--------Now,execute comment 'sudo apt update' to update your system."
+echo "--------Now,execute comment 'apt-get update' to update your system."

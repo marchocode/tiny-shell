@@ -26,13 +26,9 @@
 
 ### :checkered_flag: Automatic Config Mirrors
 
-
-
 国内Linux系统快速换系统源脚本
 
-
 注意：为了获得更好的速度，对所有软件包的源码地址进行了注释，有需要的进行打开。
-
 
 
 - :star: 自动识别是你的Linux系统版本，选择最合适你的源
@@ -40,9 +36,10 @@
 - :heart: 友好主持主流Linux系统，未来将支持更多的系统自动配置。
 
 
+**Please use root Account**
 
 ```bash
-wget -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-mirrors.sh && sudo bash update-mirrors.sh
+wget --no-check-certificate -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-mirrors.sh && bash update-mirrors.sh
 ```
 
 支持快速换源的镜像站如下：
