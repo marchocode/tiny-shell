@@ -71,6 +71,6 @@ echo ""
 cp -n /etc/apt/sources.list old.sources.list
 
 echo ""
-echo "-----------------D.Finish----------------------------"
+echo "-----------------E.Finish----------------------------"
 echo ""
 cat ${TARGET} > /etc/apt/sources.list
