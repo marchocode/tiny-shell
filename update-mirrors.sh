@@ -69,7 +69,7 @@ echo ""
 echo ""
 echo "-----------------C.Downloading Template----------------------------"
 echo ""
-wget -q -O ${TARGET} ${GITEE_RAW}/mirrors/${VERSION_CODENAME}.sources.list
+wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/mirrors/${VERSION_CODENAME}.sources.list
 sed -i 's/host/'${HOST_URL}'/g' ${TARGET}
 
 echo ""
@@ -81,4 +81,4 @@ echo ""
 echo "-----------------E.Finish----------------------------"
 echo ""
 cat ${TARGET} > /etc/apt/sources.list
-echo "--------Now,execute comment 'sudo apt update' to update your system."
+echo "--------Now,execute comment 'apt-get update' to update your system."
