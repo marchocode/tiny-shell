@@ -12,12 +12,13 @@ echo ""
 ID=`cat /etc/os-release | grep -w "ID" | cut -d "=" -f 2`
 VERSION_CODENAME=`cat /etc/os-release | grep -w "VERSION_CODENAME" | cut -d "=" -f 2`
 
+GITEE_RAW="https://gitee.com/marchocode/shell/raw/master"
 TARGET=".sources.list"
 BACKUP=".sources.list.old"
 
 
 echo "-----------------A.Loading Mirrors----------------------------"
-MIRRORS=(`cat host.mirrors`)
+MIRRORS=(`wget -q -O - ${GITEE_RAW}/host.mirrors`)
 
 for (( i=0; i<${#MIRRORS[@]}; i++ ));
 do
@@ -59,7 +60,7 @@ echo ""
 
 
 echo "-----------------C.Downloading Template----------------------------"
-wget -q -O ${TARGET} https://gitee.com/marchocode/shell/raw/master/mirrors/bullseye.sources.list
+wget -q -O ${TARGET} ${GITEE_RAW}/mirrors/${VERSION_CODENAME}.sources.list
 sed -i 's/host/'${HOST_URL}'/g' ${TARGET}
 
 echo "-----------------D.Backup Old Configuation----------------------------"
