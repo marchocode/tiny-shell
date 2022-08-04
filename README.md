@@ -2,21 +2,15 @@
 
 > 一些通用的Shell脚本，如果有帮助到你，不妨点一个Star :star: 吧~~
 
-
-
 ### SUPPORT LINUX
 
 ![](./icons/debian.png)![](./icons/ubuntu.png)
-
-
 
 ### :bookmark_tabs: Content
 
 - [Automatic Config Mirrors](#Automatic Config Mirrors) 自动配置Linux国内加速源
 
 - [Install Docker-ce]() 自动安装Docker环境
-
-
 
 ### :hourglass_flowing_sand: Update Logs
 
@@ -30,11 +24,13 @@
 
 - 22-07-31 添加Debian更新源
 
-
-
 ### :checkered_flag: Automatic Config Mirrors
 
+
+
 国内Linux系统快速换系统源脚本
+
+
 注意：为了获得更好的速度，对所有软件包的源码地址进行了注释，有需要的进行打开。
 
 
@@ -45,11 +41,9 @@
 
 
 
-```bash 
+```bash
 wget -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-mirrors.sh && sudo bash update-mirrors.sh
 ```
-
-
 
 支持快速换源的镜像站如下：
 
@@ -61,27 +55,31 @@ wget -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-m
 6. [上海交通大学开源镜像站](https://mirror.sjtu.edu.cn)
 7. [兰州大学开源镜像站](https://mirror.lzu.edu.cn)
 
+| OS     | Version                  | Suggest            |
+| ------ | ------------------------ | ------------------ |
+| Debain | 7 (wheezy `expired`) 已淘汰 | :x:                |
+|        | 8 (jessie`expired`)已存档版本 | :warning:          |
+|        | 9 (stretch) 更旧的稳定        | :heavy_check_mark: |
+|        | 10 (buster) 旧的稳定         | :heavy_check_mark: |
+|        | 11 (bullseye) 稳定版本       | :heavy_check_mark: |
+| Ubuntu | ?                        | ?                  |
+| ?      | ?                        | ?                  |
+| ?      | ?                        | ?                  |
+| ?      | ?                        | ?                  |
+
 
 
 ### :fire: Install Docker-ce
 
-一键部署安装最新版的Docker环境, 如果在国内安装，请先使用脚本自动更新国内源
+一键部署安装最新版的Docker环境, 如果在国内安装，请先使用脚本 [自动更新国内源]()
 
-| OS     | Version                               | Test                                 |
-| ------ | ------------------------------------- | ------------------------------------ |
-| Debain | 9 (stretch),10 (buster),11 (bullseye) | :heavy_check_mark::heavy_check_mark: |
-| Ubuntu | ?                                     | ?                                    |
-| Centos | ?                                     | ?                                    |
-| ?      | ?                                     | ?                                    |
-| ?      | ?                                     | ?                                    |
 
- 
+
+
 
 ### Issues
 
 如果没有你想要的镜像站，请提`ISSUE` 或者`PR` 进行添加
-
-
 
 ### References
 
@@ -92,6 +90,8 @@ wget -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-m
 [https://mirrors.ustc.edu.cn/repogen/](https://mirrors.ustc.edu.cn/repogen/)
 
 [mirror](https://www.debian.org/mirror/sponsors.zh-cn.html)
+
+[Debian -- Debian 发行版本](https://www.debian.org/releases/)
 
 
 
