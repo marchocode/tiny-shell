@@ -19,7 +19,7 @@
 解决Linux系统默认源在国内下载慢的问题，自动替换最快的镜像源
 
 ```bash
-wget 
+wget -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-mirrors.sh && bash update-mirrors.sh
 ```
 
 - 支持 Aliyun
