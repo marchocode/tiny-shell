@@ -4,6 +4,12 @@
 
 
 
+### SUPPORT LINUX
+
+![](./icons/debian.png)![](./icons/ubuntu.png)
+
+
+
 ### :bookmark_tabs: Content
 
 - [Automatic Config Mirrors](#Automatic Config Mirrors) 自动配置Linux国内加速源
@@ -61,11 +67,13 @@ wget -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-m
 
 一键部署安装最新版的Docker环境, 如果在国内安装，请先使用脚本自动更新国内源
 
-| OS     | Version                 | Test                                 |
-| ------ | ----------------------- | ------------------------------------ |
-| Debain | 9 (stretch),10 (buster) | :heavy_check_mark::heavy_check_mark: |
-| Ubuntu | ?                       |                                      |
-|        |                         |                                      |
+| OS     | Version                               | Test                                 |
+| ------ | ------------------------------------- | ------------------------------------ |
+| Debain | 9 (stretch),10 (buster),11 (bullseye) | :heavy_check_mark::heavy_check_mark: |
+| Ubuntu | ?                                     | ?                                    |
+| Centos | ?                                     | ?                                    |
+| ?      | ?                                     | ?                                    |
+| ?      | ?                                     | ?                                    |
 
  
 
@@ -84,3 +92,11 @@ wget -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-m
 [https://mirrors.ustc.edu.cn/repogen/](https://mirrors.ustc.edu.cn/repogen/)
 
 [mirror](https://www.debian.org/mirror/sponsors.zh-cn.html)
+
+
+
+### Icons
+
+[Ubuntu icon](https://www.shareicon.net/ubuntu-194940)
+
+[Debian icon](https://www.shareicon.net/debian-101872)
