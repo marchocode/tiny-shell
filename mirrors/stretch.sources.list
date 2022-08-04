@@ -1,0 +1,11 @@
+deb https://host/debian/ stretch main contrib non-free
+#deb-src https://host/debian/ stretch main contrib non-free
+
+deb https://host/debian/ stretch-updates main contrib non-free
+#deb-src https://host/debian/ stretch-updates main contrib non-free
+
+deb https://host/debian/ stretch-backports main contrib non-free
+#deb-src https://host/debian/ stretch-backports main contrib non-free
+
+deb https://host/debian-security/ stretch/updates main contrib non-free
+#deb-src https://host/debian-security/ stretch/updates main contrib non-free
