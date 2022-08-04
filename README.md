@@ -16,15 +16,22 @@
 
 ### :checkered_flag: Automatic Config Mirrors
 
-解决Linux系统默认源在国内下载慢的问题，自动替换最快的镜像源
+国内Linux系统快速换系统源脚本
+注意：为了获得更好的速度，对所有软件包的源码地址进行了注释，有需要的进行打开。
 
 ```bash
 wget -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-mirrors.sh && bash update-mirrors.sh
 ```
 
-- 支持 Aliyun
-  
-- 支持
+支持快速换源的镜像站如下：
+
+1. 阿里云镜像站
+2. 网易开源镜像站
+3. 中国科学技术大学开源软件镜像
+4. 清华大学开源软件镜像站
+5. 南京大学开源镜像站
+6. 上海交通大学开源镜像站
+7. 兰州大学开源镜像站
   
 
 ### :fire: Install Docker-ce
@@ -33,11 +40,9 @@ wget -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-m
 
 | OS  | Version | Test |
 | --- | --- | --- |
-| Debain | 9 (stretch), | :heavy_check_mark: |
+| Debain | 9 (stretch),10 (buster) | :heavy_check_mark: |
 | Ubuntu | ?   |     |
 |     |     |     |
-
-###
 
 ### Others
 

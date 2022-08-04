@@ -52,10 +52,10 @@ HOST_NAME=`echo ${HOST} | cut -d '|' -f 2`
 echo ""
 echo "-----------------D.System Info----------------------------"
 echo ""
-echo "-----------------OS: "${ID}
-echo "-----------------Code: "${VERSION_CODENAME}
-echo "-----------------Mirrors: "${HOST_URL}"(${HOST_NAME})"
-echo "-----------------Backup Config: "${BACKUP}
+echo "--------OS: "${ID}
+echo "--------Code: "${VERSION_CODENAME}
+echo "--------Mirrors: "${HOST_URL}"(${HOST_NAME})"
+echo "--------Backup Config: "${BACKUP}
 echo ""
 
 
@@ -74,3 +74,4 @@ echo ""
 echo "-----------------E.Finish----------------------------"
 echo ""
 cat ${TARGET} > /etc/apt/sources.list
+echo "--------Now,execute comment 'apt update' to update your system."
