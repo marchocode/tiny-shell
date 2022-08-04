@@ -59,12 +59,18 @@ echo "-----------------Backup Config: "${BACKUP}
 echo ""
 
 
+echo ""
 echo "-----------------C.Downloading Template----------------------------"
+echo ""
 wget -q -O ${TARGET} ${GITEE_RAW}/mirrors/${VERSION_CODENAME}.sources.list
 sed -i 's/host/'${HOST_URL}'/g' ${TARGET}
 
+echo ""
 echo "-----------------D.Backup Old Configuation----------------------------"
+echo ""
 cp -n /etc/apt/sources.list old.sources.list
 
+echo ""
 echo "-----------------D.Finish----------------------------"
+echo ""
 cat ${TARGET} > /etc/apt/sources.list
