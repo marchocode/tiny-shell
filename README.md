@@ -46,7 +46,8 @@
 
 
 ```bash 
-wget -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-mirrors.sh && sudo bash update-mirrors.sh
+# Please use root Account
+wget --no-check-certificate -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-mirrors.sh && bash update-mirrors.sh
 ```
 
 

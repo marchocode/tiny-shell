@@ -19,7 +19,7 @@ BACKUP=".sources.list.old"
 
 echo "-----------------A.Loading Mirrors----------------------------"
 echo ""
-MIRRORS=(`wget -q -O - ${GITEE_RAW}/host.mirrors`)
+MIRRORS=(`wget --no-check-certificate -q -O - ${GITEE_RAW}/host.mirrors`)
 
 for (( i=0; i<${#MIRRORS[@]}; i++ ));
 do
