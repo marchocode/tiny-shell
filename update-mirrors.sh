@@ -10,7 +10,7 @@ echo ""
 
 
 ID=`cat /etc/os-release | grep -w "ID" | cut -d "=" -f 2`
-VERSION_CODENAME=`cat /etc/os-release | grep -w "VERSION_CODENAME" | cut -d "=" -f 2`
+VERSION_CODENAME=`lsb_release -sc`
 
 GITEE_RAW="https://gitee.com/marchocode/shell/raw/master"
 TARGET=".sources.list"
