@@ -18,6 +18,7 @@ BACKUP=".sources.list.old"
 
 
 echo "-----------------A.Loading Mirrors----------------------------"
+echo ""
 MIRRORS=(`wget -q -O - ${GITEE_RAW}/host.mirrors`)
 
 for (( i=0; i<${#MIRRORS[@]}; i++ ));
@@ -33,15 +34,21 @@ echo ""
 echo "-----------------B.Please type your numbers----------------------------"
 echo ""
 read -p "Type(default: 1): " CHOISE
+echo ""
 
-# if [ ${CHOISE} -eq ""];
-# then 
-#     CHOISE=1
-# fi
+if [ -z $CHOISE ]; then
+    CHOISE="1"
+fi
+
+if [[ ! $CHOISE =~ ^[0-9]+$ ]] ; then
+    echo "[ERROR]---------Typing Number Please!----"
+    exit 0
+fi
 
 if [ ${CHOISE} -lt 1 ] || [ ${CHOISE} -gt ${#MIRRORS[@]} ];
 then 
-    echo "[ERROR],Index Out"
+    echo "[ERROR]---------Array Index Out!----"
+    echo "[INFO]---------You Can Input Min Number Is [1], And Max Number Is ["${#MIRRORS[@]}"]"
     exit 0
 fi
 
@@ -74,4 +81,4 @@ echo ""
 echo "-----------------E.Finish----------------------------"
 echo ""
 cat ${TARGET} > /etc/apt/sources.list
-echo "--------Now,execute comment 'apt update' to update your system."
+echo "--------Now,execute comment 'sudo apt update' to update your system."
