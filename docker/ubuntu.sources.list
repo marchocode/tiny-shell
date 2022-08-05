@@ -1,0 +1,1 @@
+deb [arch=ARCHCODE signed-by=KEY_PATH/docker.gpg] https://HOST/linux/ubuntu   ID stable
