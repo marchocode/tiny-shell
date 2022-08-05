@@ -1,60 +1,112 @@
 #!/bin/bash
 
-# @Author mrc
-# @Github https://github.com/marchocode/shell
-#
-#
-# @Title Docker-ce Install Script
-# @Desc Automatic install docker-ce
+echo ""
+echo ""
+echo "@Title Automatic Install Docker"
+echo "@Author Marcho"
+echo "@Github https://github.com/marchocode/shell"
+echo ""
+echo ""
+
+GITEE_RAW="https://gitee.com/marchocode/shell/raw/master"
+VERSION_CODENAME=`lsb_release -sc`
+ARCHCODE=$(dpkg --print-architecture)
+ID=`cat /etc/os-release | grep -w "ID" | cut -d "=" -f 2`
+
+KEY_DIR="/etc/apt/keyrings"
+TARGET=".docker.list"
+DOCKER_MIRROR="/etc/apt/sources.list.d/docker.list"
 
 
-# 1. https://mirrors.aliyun.com/docker-ce/
-# 2. https://mirrors.163.com/docker-ce/
-# 3. https://mirrors.pku.edu.cn/docker-ce/
-# 4. https://mirrors.ustc.edu.cn/debian/
+echo "-----------------A.Loading Mirrors----------------------------"
+echo ""
+MIRRORS=(`wget --no-check-certificate -q -O - ${GITEE_RAW}/host.mirrors`)
 
-MIRRORS_LIST=("" "mirrors.aliyun.com" "mirrors.163.com" "mirrors.pku.edu.cn")
-ID=`cat /etc/os-release | grep "^ID" | cut -d "=" -f 2`
+for (( i=0; i<${#MIRRORS[@]}; i++ ));
+do
+    index=`expr ${i} + 1`
+    host=`echo ${MIRRORS[$i]} | cut -d '|' -f 1`
+    desc=`echo ${MIRRORS[$i]} | cut -d '|' -f 2`
 
-USER_CHECK=1
-echo "--------------------------A.请选择docker-ce镜像站------------------------------"
+    echo $index"."$host"(${desc})"
+done
 
-echo "--------1.mirrors.aliyun.com(阿里云)-----------------------------"
-echo "--------2.mirrors.163.com(网易)-----------------------------"
-echo "--------3.mirrors.pku.edu.cn(北京大学)-----------------------------"
-echo "--------4.mirrors.ustc.edu.cn(中国科学技术大学)-----------------------------"
+echo ""
+echo "-----------------B.Please type your numbers----------------------------"
+echo ""
+read -p "Type(default: 1): " CHOISE
+echo ""
 
-read -p "--------请输入数字选择[默认阿里云]：" USER_CHECK
+if [ -z $CHOISE ]; then
+    CHOISE="1"
+fi
 
-HOST=${MIRRORS_LIST[USER_CHECK]}
-BASE_PATH=https://${HOST}/docker-ce/linux/${ID}
+if [[ ! $CHOISE =~ ^[0-9]+$ ]] ; then
+    echo "[ERROR]---------Typing Number Please!----"
+    exit 0
+fi
 
-# update repo
-apt-get update
+if [ ${CHOISE} -lt 1 ] || [ ${CHOISE} -gt ${#MIRRORS[@]} ];
+then 
+    echo "[ERROR]---------Array Index Out!----"
+    echo "[INFO]---------You Can Input Min Number Is [1], And Max Number Is ["${#MIRRORS[@]}"]"
+    exit 0
+fi
 
+HOST=${MIRRORS[CHOISE-1]}
+HOST_DOMAIN=`echo ${HOST} | cut -d '|' -f 1`
+HOST_NAME=`echo ${HOST} | cut -d '|' -f 2`
+BASE_PATH=https://${HOST_DOMAIN}/docker-ce/linux/${ID}
 
-echo "--------------------------B.安装必要的依赖------------------------------"
+echo ""
+echo "-----------------C.Install ca-certificates gnupg ----------------------------"
+echo ""
 # install some softwares
-apt-get install ca-certificates curl gnupg lsb-release
+apt-get -y -q install ca-certificates gnupg
 
 
-echo "--------------------------C.导入公钥------------------------------"
-# GPG key
-# https://mirrors.aliyun.com/docker-ce/linux/debian/gpg
-mkdir -p /etc/apt/keyrings
-curl ${BASE_PATH}/gpg | gpg --dearmor > /etc/apt/keyrings/docker.gpg
+echo ""
+echo "-----------------D.Downloading Template----------------------------"
+echo ""
+wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/docker/${ID}.sources.list
+
+sed -i 's/HOST/'${HOST_DOMAIN}'/g' ${TARGET}
+sed -i 's/ARCHCODE/'${ARCHCODE}'/g' ${TARGET}
+sed -i 's/ID/'${VERSION_CODENAME}'/g' ${TARGET}
+
+cat ${TARGET} > ${DOCKER_MIRROR}
 
 
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg]\
-  ${BASE_PATH}\
-  $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo ""
+echo "-----------------E.Import Key----------------------------"
+echo ""
+mkdir -p ${KEY_DIR}
+wget --no-check-certificate -q -O - ${BASE_PATH}/gpg | gpg --dearmor > ${KEY_DIR}/docker.gpg
 
-echo "--------------------------D.开始安装------------------------------"
-# install docker-ce
+
+echo ""
+echo "-----------------F.System Info----------------------------"
+echo ""
+echo "--------OS: "${ID}
+echo "--------Code: "${VERSION_CODENAME}
+echo "--------Mirrors: "${HOST_DOMAIN}"(${HOST_NAME})"
+echo "--------DockerMirror: "${DOCKER_MIRROR}
+echo "--------Docker GPG Key: "${KEY_DIR}/docker.gpg
+echo ""
+
+echo ""
+echo "-----------------G.Update Mirrors----------------------------"
+echo ""
 apt-get update
-apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose
 
-# check version
-echo "--------------------------E.检查版本------------------------------"
+echo ""
+echo "-----------------H.Setup----------------------------"
+echo ""
+apt-get -y install docker-ce
+
+echo ""
+echo "-----------------H.Check----------------------------"
+echo ""
 docker -v
+echo "Try execute: docker run hello-world"
+echo ""
