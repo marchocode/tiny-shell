@@ -6,6 +6,21 @@
 
 ![](./icons/debian.png)![](./icons/ubuntu.png)
 
+### Test
+
+| OS     | Version                     | Update-Mirrors/Install-Docker            |
+| ------ | --------------------------- | ------------------ |
+| Debain | 7 (wheezy `expired`) 已淘汰    | :x:                |
+|        | 8 (jessie`expired`)已存档版本    | :warning:          |
+|        | 9 (stretch) 更旧的稳定           | :heavy_check_mark: |
+|        | 10 (buster) 旧的稳定            | :heavy_check_mark: |
+|        | 11 (bullseye) 稳定版本          | :heavy_check_mark: |
+| Ubuntu | 22.04 LTS (Jammy Jellyfish) | :heavy_check_mark:,:heavy_check_mark: |
+|        | 20.04 LTS (Focal Fossa)     | :heavy_check_mark:,:heavy_check_mark: |
+|        | 18.04 LTS (Bionic Beaver)   | :heavy_check_mark:,:heavy_check_mark: |
+| ?      | ?                           | ?                  |
+
+
 ### :bookmark_tabs: Content
 
 - [Automatic Config Mirrors](#Automatic Config Mirrors) 自动配置Linux国内加速源
@@ -30,11 +45,9 @@
 
 注意：为了获得更好的速度，对所有软件包的源码地址进行了注释，有需要的进行打开。
 
-
 - :star: 自动识别是你的Linux系统版本，选择最合适你的源
 
 - :heart: 友好主持主流Linux系统，未来将支持更多的系统自动配置。
-
 
 **Please use root Account**
 
@@ -52,27 +65,21 @@ wget --no-check-certificate -O update-mirrors.sh https://gitee.com/marchocode/sh
 6. [上海交通大学开源镜像站](https://mirror.sjtu.edu.cn)
 7. [兰州大学开源镜像站](https://mirror.lzu.edu.cn)
 
-| OS     | Version                  | Suggest            |
-| ------ | ------------------------ | ------------------ |
-| Debain | 7 (wheezy `expired`) 已淘汰 | :x:                |
-|        | 8 (jessie`expired`)已存档版本 | :warning:          |
-|        | 9 (stretch) 更旧的稳定        | :heavy_check_mark: |
-|        | 10 (buster) 旧的稳定         | :heavy_check_mark: |
-|        | 11 (bullseye) 稳定版本       | :heavy_check_mark: |
-| Ubuntu | 20.04.3 LTS (Focal Fossa)                        | :heavy_check_mark:                  |
-| ?      | ?                        | ?                  |
-| ?      | ?                        | ?                  |
-| ?      | ?                        | ?                  |
-
-
 
 ### :fire: Install Docker-ce
 
-一键部署安装最新版的Docker环境, 如果在国内安装，请先使用脚本 [自动更新国内源]()
+一键部署安装最新版的Docker环境, 如果在国内安装，请先上方使用脚本 [自动更新国内源]()
 
+```bash
+wget --no-check-certificate -O install-docker.sh https://gitee.com/marchocode/shell/raw/master/install-docker.sh && bash install-docker.sh
+```
 
-
-
+| OS     | Version                     | Suggest            |
+| ------ | --------------------------- | ------------------ |
+|        |                             |                    |
+| Ubuntu | 22.04 LTS (Jammy Jellyfish) | :heavy_check_mark: |
+|        | 20.04 LTS (Focal Fossa)     | :heavy_check_mark: |
+|        | 18.04 LTS (Bionic Beaver)   | :heavy_check_mark: |
 
 ### Issues
 
@@ -90,7 +97,7 @@ wget --no-check-certificate -O update-mirrors.sh https://gitee.com/marchocode/sh
 
 [Debian -- Debian 发行版本](https://www.debian.org/releases/)
 
-
+[Releases - Ubuntu Wiki](https://wiki.ubuntu.com/Releases)
 
 ### Icons
 
