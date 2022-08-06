@@ -8,18 +8,17 @@
 
 ### Test
 
-| OS     | Version                     | Update-Mirrors/Install-Docker            |
-| ------ | --------------------------- | ------------------ |
-| Debain | 7 (wheezy `expired`) 已淘汰    | :x:                |
-|        | 8 (jessie`expired`)已存档版本    | :warning:          |
-|        | 9 (stretch) 更旧的稳定           | :heavy_check_mark: |
-|        | 10 (buster) 旧的稳定            | :heavy_check_mark: |
-|        | 11 (bullseye) 稳定版本          | :heavy_check_mark: |
-| Ubuntu | 22.04 LTS (Jammy Jellyfish) | :heavy_check_mark:,:heavy_check_mark: |
-|        | 20.04 LTS (Focal Fossa)     | :heavy_check_mark:,:heavy_check_mark: |
-|        | 18.04 LTS (Bionic Beaver)   | :heavy_check_mark:,:heavy_check_mark: |
-| ?      | ?                           | ?                  |
-
+| OS     | Version                     | Update-Mirrors/Install-Docker         |
+| ------ | --------------------------- | ------------------------------------- |
+| Debain | 7 (wheezy `expired`) 已淘汰    | :x:                                   |
+|        | 8 (jessie`expired`)已存档版本    | :warning:                             |
+|        | 9 (stretch) 更旧的稳定           | :heavy_check_mark:                    |
+|        | 10 (buster) 旧的稳定            | :heavy_check_mark:                    |
+|        | 11 (bullseye) 稳定版本          | :heavy_check_mark:                    |
+| Ubuntu | 22.04 LTS (Jammy Jellyfish) | :heavy_check_mark: :heavy_check_mark: |
+|        | 20.04 LTS (Focal Fossa)     | :heavy_check_mark: :heavy_check_mark: |
+|        | 18.04 LTS (Bionic Beaver)   | :heavy_check_mark: :heavy_check_mark: |
+| ?      | ?                           | ?                                     |
 
 ### :bookmark_tabs: Content
 
@@ -64,7 +63,6 @@ wget --no-check-certificate -O update-mirrors.sh https://gitee.com/marchocode/sh
 5. [南京大学开源镜像站](https://mirror.nju.edu.cn)
 6. [上海交通大学开源镜像站](https://mirror.sjtu.edu.cn)
 7. [兰州大学开源镜像站](https://mirror.lzu.edu.cn)
-
 
 ### :fire: Install Docker-ce
 
