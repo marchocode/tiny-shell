@@ -15,9 +15,8 @@ VERSION_CODENAME=`lsb_release -sc`
 GITEE_RAW="https://gitee.com/marchocode/shell/raw/master"
 TARGET=".sources.list"
 BACKUP="sources.list.old"
-DEFAULT_SOURCES=".default.sources.list"
 
-echo "-----------------A.Loading Mirrors----------------------------"
+echo "[INFO]----------------A.Loading Mirrors"
 echo ""
 MIRRORS=(`wget --no-check-certificate -q -O - ${GITEE_RAW}/host.mirrors`)
 
@@ -31,7 +30,7 @@ do
 done
 
 echo ""
-echo "-----------------B.Please type your numbers----------------------------"
+echo "[INFO]----------------B.Please type your numbers"
 echo ""
 read -p "Type(default: 1): " CHOISE
 echo ""
@@ -47,8 +46,8 @@ fi
 
 if [ ${CHOISE} -lt 1 ] || [ ${CHOISE} -gt ${#MIRRORS[@]} ];
 then 
-    echo "[ERROR]---------Array Index Out!----"
-    echo "[INFO]---------You Can Input Min Number Is [1], And Max Number Is ["${#MIRRORS[@]}"]"
+    echo "[ERROR]----------------Array Index Out!"
+    echo "[ERROR]----------------You Can Input Min Number Is [1], And Max Number Is ["${#MIRRORS[@]}"]"
     exit 0
 fi
 
@@ -57,7 +56,7 @@ HOST_URL=`echo ${HOST} | cut -d '|' -f 1`
 HOST_NAME=`echo ${HOST} | cut -d '|' -f 2`
 
 echo ""
-echo "-----------------D.System Info----------------------------"
+echo "[INFO]----------------D.System Info"
 echo ""
 echo "--------OS: "${ID}
 echo "--------Code: "${VERSION_CODENAME}
@@ -67,7 +66,7 @@ echo ""
 
 
 echo ""
-echo "-----------------C.Downloading Template----------------------------"
+echo "[INFO]----------------C.Downloading Template----------------------------"
 echo ""
 
 # download release config
@@ -75,7 +74,7 @@ wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/${ID}/${VERSION_CODENAM
 
 # download default config
 if [ ! -s ${TARGET} ]; then
-    echo "-----------------[WARN] Not Found Release file, Use Default"
+    echo "[WARN]----------------Not Found Release file, Use Default"
     wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/${ID}/default.sources.list
     sed -i 's/release/'${VERSION_CODENAME}'/g' ${TARGET}
 fi
@@ -83,12 +82,12 @@ fi
 sed -i 's/host/'${HOST_URL}'/g' ${TARGET}
 
 echo ""
-echo "-----------------D.Backup Old Configuation----------------------------"
+echo "[INFO]----------------D.Backup Old Sources"
 echo ""
 cp -n /etc/apt/sources.list ${BACKUP}
 
 echo ""
-echo "-----------------E.Finish----------------------------"
+echo "[INFO]----------------E.Finish"
 echo ""
 cat ${TARGET} > /etc/apt/sources.list
-echo "--------Now,execute comment 'apt-get update' to update your system."
+echo "[INFO]----------------Now,execute comment 'apt-get update' to update your system."
