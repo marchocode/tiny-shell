@@ -1,0 +1,11 @@
+deb https://host/ubuntu/ release main restricted universe multiverse
+#deb-src https://host/ubuntu/ release main restricted universe multiverse
+
+deb https://host/ubuntu/ release-security main restricted universe multiverse
+#deb-src https://host/ubuntu/ release-security main restricted universe multiverse
+
+deb https://host/ubuntu/ release-updates main restricted universe multiverse
+#deb-src https://host/ubuntu/ release-updates main restricted universe multiverse
+
+deb https://host/ubuntu/ release-backports main restricted universe multiverse
+#deb-src https://host/ubuntu/ release-backports main restricted universe multiverse

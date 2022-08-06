@@ -15,7 +15,7 @@ VERSION_CODENAME=`lsb_release -sc`
 GITEE_RAW="https://gitee.com/marchocode/shell/raw/master"
 TARGET=".sources.list"
 BACKUP="sources.list.old"
-
+DEFAULT_SOURCES=".default.sources.list"
 
 echo "-----------------A.Loading Mirrors----------------------------"
 echo ""
@@ -69,7 +69,16 @@ echo ""
 echo ""
 echo "-----------------C.Downloading Template----------------------------"
 echo ""
-wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/mirrors/${VERSION_CODENAME}.sources.list
+
+# download default config
+wget --no-check-certificate -q -O ${DEFAULT_SOURCES} ${GITEE_RAW}/${ID}/default.sources.list
+# download release config
+wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/${ID}/${VERSION_CODENAME}.sources.list
+
+if [  ]; then
+    
+fi
+
 sed -i 's/host/'${HOST_URL}'/g' ${TARGET}
 
 echo ""
