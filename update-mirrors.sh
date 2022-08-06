@@ -55,18 +55,9 @@ HOST=${MIRRORS[CHOISE-1]}
 HOST_URL=`echo ${HOST} | cut -d '|' -f 1`
 HOST_NAME=`echo ${HOST} | cut -d '|' -f 2`
 
-echo ""
-echo "[INFO]----------------D.System Info"
-echo ""
-echo "--------OS: "${ID}
-echo "--------Code: "${VERSION_CODENAME}
-echo "--------Mirrors: "${HOST_URL}"(${HOST_NAME})"
-echo "--------Backup Config: "${BACKUP}
-echo ""
-
 
 echo ""
-echo "[INFO]----------------C.Downloading Template----------------------------"
+echo "[INFO]----------------C.Downloading Template"
 echo ""
 
 # download release config
@@ -87,7 +78,17 @@ echo ""
 cp -n /etc/apt/sources.list ${BACKUP}
 
 echo ""
-echo "[INFO]----------------E.Finish"
+echo "[INFO]----------------E.System Info"
+echo ""
+echo "--------OS: "${ID}
+echo "--------Code: "${VERSION_CODENAME}
+echo "--------Mirrors: "${HOST_URL}"(${HOST_NAME})"
+echo "--------Backup Config: "${BACKUP}
+echo ""
+
+
+echo ""
+echo "[INFO]----------------F.Finish"
 echo ""
 cat ${TARGET} > /etc/apt/sources.list
 echo "[INFO]----------------Now,execute comment 'apt-get update' to update your system."
