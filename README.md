@@ -21,11 +21,11 @@
 
 | :strawberry: OS | :package: Version | :hammer: Update-Mirrors | :hammer: Install Docker |
 | --- | --- | --- | --- |
-| Debain | 7 (wheezy `expired`) 已淘汰 | :heavy_check_mark: |     |
-|     | 8 (jessie`expired`)已存档版本 | :heavy_check_mark: |     |
-|     | 9 (stretch) 更旧的稳定 | :heavy_check_mark: |     |
+|  Debain   | 11 (bullseye) 稳定版本 | :heavy_check_mark: |     |
 |     | 10 (buster) 旧的稳定 | :heavy_check_mark: |     |
-|     | 11 (bullseye) 稳定版本 | :heavy_check_mark: |     |
+|     | 9 (stretch) 更旧的稳定 | :heavy_check_mark: |     |
+|     | 8 (jessie`expired`)已存档版本 | :heavy_check_mark: |     |
+|  | 7 (wheezy `expired`) 已淘汰 | :heavy_check_mark: |     |
 | Ubuntu | 22.04 LTS (Jammy Jellyfish) | :heavy_check_mark: | :heavy_check_mark: |
 |     | 20.04 LTS (Focal Fossa) | :heavy_check_mark: | :heavy_check_mark: |
 |     | 18.04.4 LTS (Bionic Beaver) | :heavy_check_mark: | :heavy_check_mark: |
