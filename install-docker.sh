@@ -18,7 +18,7 @@ TARGET=".docker.list"
 DOCKER_MIRROR="/etc/apt/sources.list.d/docker.list"
 
 
-echo "-----------------A.Loading Mirrors----------------------------"
+echo "[INFO]-----------------A.Loading Mirrors"
 echo ""
 MIRRORS=(`wget --no-check-certificate -q -O - ${GITEE_RAW}/host.mirrors`)
 
@@ -32,7 +32,7 @@ do
 done
 
 echo ""
-echo "-----------------B.Please type your numbers----------------------------"
+echo "[INFO]-----------------B.Please type your numbers"
 echo ""
 read -p "Type(default: 1): " CHOISE
 echo ""
@@ -42,14 +42,14 @@ if [ -z $CHOISE ]; then
 fi
 
 if [[ ! $CHOISE =~ ^[0-9]+$ ]] ; then
-    echo "[ERROR]---------Typing Number Please!----"
+    echo "[ERROR] Typing Number Please!----"
     exit 0
 fi
 
 if [ ${CHOISE} -lt 1 ] || [ ${CHOISE} -gt ${#MIRRORS[@]} ];
-then 
-    echo "[ERROR]---------Array Index Out!----"
-    echo "[INFO]---------You Can Input Min Number Is [1], And Max Number Is ["${#MIRRORS[@]}"]"
+then
+    echo "[ERROR] Array Index Out!----"
+    echo "[ERROR] You Can Input Min Number Is [1], And Max Number Is ["${#MIRRORS[@]}"]"
     exit 0
 fi
 
@@ -59,14 +59,14 @@ HOST_NAME=`echo ${HOST} | cut -d '|' -f 2`
 BASE_PATH=https://${HOST_DOMAIN}/docker-ce/linux/${ID}
 
 echo ""
-echo "-----------------C.Install ca-certificates gnupg ----------------------------"
+echo "[INFO]-----------------C.Install ca-certificates gnupg "
 echo ""
 # install some softwares
 apt-get -y -q install ca-certificates gnupg
 
 
 echo ""
-echo "-----------------D.Downloading Template----------------------------"
+echo "[INFO]-----------------D.Downloading Template"
 echo ""
 wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/docker/${ID}.sources.list
 
@@ -78,14 +78,14 @@ cat ${TARGET} > ${DOCKER_MIRROR}
 
 
 echo ""
-echo "-----------------E.Import Key----------------------------"
+echo "[INFO]-----------------E.Import Key"
 echo ""
 mkdir -p ${KEY_DIR}
 wget --no-check-certificate -q -O - ${BASE_PATH}/gpg | gpg --dearmor > ${KEY_DIR}/docker.gpg
 
 
 echo ""
-echo "-----------------F.System Info----------------------------"
+echo "[INFO]-----------------F.System Info"
 echo ""
 echo "--------OS: "${ID}
 echo "--------Code: "${VERSION_CODENAME}
@@ -95,17 +95,17 @@ echo "--------Docker GPG Key: "${KEY_DIR}/docker.gpg
 echo ""
 
 echo ""
-echo "-----------------G.Update Mirrors----------------------------"
+echo "[INFO]-----------------G.Update Mirrors"
 echo ""
 apt-get update
 
 echo ""
-echo "-----------------H.Setup----------------------------"
+echo "[INFO]-----------------H.Setup"
 echo ""
 apt-get -y install docker-ce
 
 echo ""
-echo "-----------------H.Check----------------------------"
+echo "[INFO]-----------------H.Check"
 echo ""
 docker -v
 echo "Try execute: docker run hello-world"

@@ -40,14 +40,14 @@ if [ -z $CHOISE ]; then
 fi
 
 if [[ ! $CHOISE =~ ^[0-9]+$ ]] ; then
-    echo "[ERROR]---------Typing Number Please!----"
+    echo "[ERROR] Typing Number Please!----"
     exit 0
 fi
 
 if [ ${CHOISE} -lt 1 ] || [ ${CHOISE} -gt ${#MIRRORS[@]} ];
 then 
-    echo "[ERROR]----------------Array Index Out!"
-    echo "[ERROR]----------------You Can Input Min Number Is [1], And Max Number Is ["${#MIRRORS[@]}"]"
+    echo "[ERROR] Array Index Out!"
+    echo "[ERROR] You Can Input Min Number Is [1], And Max Number Is ["${#MIRRORS[@]}"]"
     exit 0
 fi
 
@@ -65,7 +65,7 @@ wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/${ID}/${VERSION_CODENAM
 
 # download default config
 if [ ! -s ${TARGET} ]; then
-    echo "[WARN]----------------Not Found Release file, Use Default"
+    echo "[WARN] Not Found Release file, Use Default"
     wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/${ID}/default.sources.list
     sed -i 's/release/'${VERSION_CODENAME}'/g' ${TARGET}
 fi
@@ -92,3 +92,4 @@ echo "[INFO]----------------F.Finish"
 echo ""
 cat ${TARGET} > /etc/apt/sources.list
 echo "[INFO]----------------Now,execute comment 'apt-get update' to update your system."
+echo ""
