@@ -59,10 +59,10 @@ HOST_NAME=`echo ${HOST} | cut -d '|' -f 2`
 BASE_PATH=https://${HOST_DOMAIN}/docker-ce/linux/${ID}
 
 echo ""
-echo "[INFO]-----------------C.Install ca-certificates gnupg "
+echo "[INFO]-----------------C.Install ca-certificates gnupg apt-transport-https"
 echo ""
 # install some softwares
-apt-get -y -q install ca-certificates gnupg
+apt-get -y -q install ca-certificates gnupg apt-transport-https
 
 
 echo ""
