@@ -70,13 +70,14 @@ echo ""
 echo "-----------------C.Downloading Template----------------------------"
 echo ""
 
-# download default config
-wget --no-check-certificate -q -O ${DEFAULT_SOURCES} ${GITEE_RAW}/${ID}/default.sources.list
 # download release config
 wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/${ID}/${VERSION_CODENAME}.sources.list
 
-if [  ]; then
-    
+# download default config
+if [ ! -s ${TARGET} ]; then
+    echo "-----------------[WARN] Not Found Release file, Use Default"
+    wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/${ID}/default.sources.list
+    sed -i 's/release/'${VERSION_CODENAME}'/g' ${TARGET}
 fi
 
 sed -i 's/host/'${HOST_URL}'/g' ${TARGET}
