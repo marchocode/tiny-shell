@@ -2,7 +2,15 @@
 
 > 一些通用的Shell脚本，如果有帮助到你，不妨点一个Star :star: 吧~~
 
-### SUPPORT LINUX
+### :triangular_flag_on_post: SUPPORT LINUX
+![](./icons/debian.png)![](./icons/ubuntu.png)
+
+### :bookmark_tabs: Content
+
+- Automatic Config Mirrors 自动配置Linux国内加速源
+
+- Install Docker-ce 自动安装Docker环境
+
 
 ### :globe_with_meridians: Mirrors
 
@@ -17,22 +25,22 @@
 7. [兰州大学开源镜像站](https://mirror.lzu.edu.cn)
 8. Loading...
 
-### Test
+### :test_tube: Test
 
 | :strawberry: OS | :package: Version | :hammer: Update-Mirrors | :hammer: Install Docker |
 | --- | --- | --- | --- |
-|  Debain   | 11 (bullseye) 稳定版本 | :heavy_check_mark: |     |
-|     | 10 (buster) 旧的稳定 | :heavy_check_mark: |     |
-|     | 9 (stretch) 更旧的稳定 | :heavy_check_mark: |     |
-|     | 8 (jessie`expired`)已存档版本 | :heavy_check_mark: |     |
-|  | 7 (wheezy `expired`) 已淘汰 | :heavy_check_mark: |     |
+| Debain | 11 (bullseye) 稳定版本 | :heavy_check_mark: | :heavy_check_mark: |
+|     | 10 (buster) 旧的稳定 | :heavy_check_mark: | :heavy_check_mark: |
+|     | 9 (stretch) 更旧的稳定 | :heavy_check_mark: | :heavy_check_mark: |
+|     | 8 (jessie`expired`)已存档 | :warning: | :x: |
+|     | 7 (wheezy `expired`) 已淘汰 | :warning: | :x: |
 | Ubuntu | 22.04 LTS (Jammy Jellyfish) | :heavy_check_mark: | :heavy_check_mark: |
 |     | 20.04 LTS (Focal Fossa) | :heavy_check_mark: | :heavy_check_mark: |
 |     | 18.04.4 LTS (Bionic Beaver) | :heavy_check_mark: | :heavy_check_mark: |
 |     | 16.04.1 LTS (Xenial Xerus) | :heavy_check_mark: | :heavy_check_mark: |
 |     | 14.04.1 LTS, Trusty Tahr | :heavy_check_mark: | :warning: |
 
-### Example
+### :bookmark_tabs: Example
 
 ```shell
 @Title Automatic Update Linux Mirrors
@@ -75,14 +83,9 @@ Type(default: 1): 2
 [INFO]----------------Now,execute comment 'apt-get update' to update your system.
 ```
 
-### :bookmark_tabs: Content
-
-- [Automatic Config Mirrors](#Automatic Config Mirrors) 自动配置Linux国内加速源
-
-- [Install Docker-ce]() 自动安装Docker环境
-
-
 ### :hourglass_flowing_sand: Update Logs
+
+- 22-08-06 发布`v1.0`
 
 - 22-08-04 按配置文件动态更新源
 
@@ -120,11 +123,11 @@ wget --no-check-certificate -O update-mirrors.sh https://gitee.com/marchocode/sh
 wget --no-check-certificate -O install-docker.sh https://gitee.com/marchocode/shell/raw/master/install-docker.sh && bash install-docker.sh
 ```
 
-### Issues
+### :grey_question: Issues
 
-如果没有你想要的镜像站，请提`ISSUE` 或者`PR` 进行添加
+如果没有你想要的镜像站，请提`ISSUE` 或者`PR` 进行添加.
 
-### References
+### :link: References
 
 [Install Docker Engine on Debian | Docker Documentation](https://docs.docker.com/engine/install/debian/)
 
@@ -138,7 +141,7 @@ wget --no-check-certificate -O install-docker.sh https://gitee.com/marchocode/sh
 
 [Releases - Ubuntu Wiki](https://wiki.ubuntu.com/Releases)
 
-### Icons
+### :partying_face: Icons
 
 [Ubuntu icon](https://www.shareicon.net/ubuntu-194940)
 
