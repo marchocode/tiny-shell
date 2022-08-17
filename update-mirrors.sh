@@ -9,12 +9,33 @@ echo ""
 echo ""
 
 
-ID=`cat /etc/os-release | grep -w "ID" | cut -d "=" -f 2`
-VERSION_CODENAME=`lsb_release -sc`
+ID=`cat /etc/os-release | grep -w "ID" | cut -d "=" -f 2 | tr -d "\""`
+VERSION_CODENAME=`cat /etc/os-release | fgrep -w "VERSION" | cut -d "=" -f 2 | tr -d "\""`
+
+if [ $ID != "centos" ];
+then
+  VERSION_CODENAME=`lsb_release -sc`
+fi
 
 GITEE_RAW="https://gitee.com/marchocode/shell/raw/master"
-TARGET=".sources.list"
-BACKUP="sources.list.old"
+
+CONFIG=(`wget --no-check-certificate -q -O - ${GITEE_RAW}/config`)
+DOWNLOAD="."${ID}-${VERSION_CODENAME}
+TARGET=""
+
+for (( i=0; i<${#CONFIG[@]}; i++ ));
+do
+
+    ITEM=${CONFIG[$i]}
+    ITEM_ID=`echo $ITEM | cut -d ',' -f 1`
+    ITEM_TARGET=`echo $ITEM | cut -d ',' -f 2`
+
+    if [ $ID == $ITEM_ID ]; then
+        ${TARGET}=${ITEM_TARGET}
+    fi
+
+done
+
 
 echo "[INFO]----------------A.Loading Mirrors"
 echo ""
@@ -61,16 +82,16 @@ echo "[INFO]----------------C.Downloading Template"
 echo ""
 
 # download release config
-wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/${ID}/${VERSION_CODENAME}.sources.list
+wget --no-check-certificate -q -O ${DOWNLOAD} ${GITEE_RAW}/${ID}/${VERSION_CODENAME}
 
 # download default config
-if [ ! -s ${TARGET} ]; then
+if [ ! -s ${DOWNLOAD} ]; then
     echo "[WARN] Not Found Release file, Use Default"
-    wget --no-check-certificate -q -O ${TARGET} ${GITEE_RAW}/${ID}/default.sources.list
-    sed -i 's/release/'${VERSION_CODENAME}'/g' ${TARGET}
+    wget --no-check-certificate -q -O ${DOWNLOAD} ${GITEE_RAW}/${ID}/default
+    sed -i 's/release/'${VERSION_CODENAME}'/g' ${DOWNLOAD}
 fi
 
-sed -i 's/host/'${HOST_URL}'/g' ${TARGET}
+sed -i 's/host/'${HOST_URL}'/g' ${DOWNLOAD}
 
 echo ""
 echo "[INFO]----------------D.Backup Old Sources"
@@ -84,12 +105,13 @@ echo "--------OS: "${ID}
 echo "--------Code: "${VERSION_CODENAME}
 echo "--------Mirrors: "${HOST_URL}"(${HOST_NAME})"
 echo "--------Backup Config: "${BACKUP}
+echo "--------Target Config: "${TARGET}
 echo ""
 
 
 echo ""
 echo "[INFO]----------------F.Finish"
 echo ""
-cat ${TARGET} > /etc/apt/sources.list
+cat ${DOWNLOAD} > ${TARGET}
 echo "[INFO]----------------Now,execute comment 'apt-get update' to update your system."
 echo ""
