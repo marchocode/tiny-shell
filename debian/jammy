@@ -1,0 +1,11 @@
+deb https://host/ubuntu/ jammy main restricted universe multiverse
+#deb-src https://host/ubuntu/ jammy main restricted universe multiverse
+
+deb https://host/ubuntu/ jammy-security main restricted universe multiverse
+#deb-src https://host/ubuntu/ jammy-security main restricted universe multiverse
+
+deb https://host/ubuntu/ jammy-updates main restricted universe multiverse
+#deb-src https://host/ubuntu/ jammy-updates main restricted universe multiverse
+
+deb https://host/ubuntu/ jammy-backports main restricted universe multiverse
+#deb-src https://host/ubuntu/ jammy-backports main restricted universe multiverse

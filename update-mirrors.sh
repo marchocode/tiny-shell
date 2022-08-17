@@ -17,25 +17,12 @@ then
   VERSION_CODENAME=`lsb_release -sc`
 fi
 
-GITEE_RAW="https://gitee.com/marchocode/shell/raw/master"
+GITEE_RAW="https://gitee.com/marchocode/shell/raw/dev-centos"
 
-CONFIG=(`wget --no-check-certificate -q -O - ${GITEE_RAW}/config`)
+CONFIG=`wget --no-check-certificate -q -O - ${GITEE_RAW}/config | fgrep -w ${ID}`
 DOWNLOAD="."${ID}-${VERSION_CODENAME}
-TARGET=""
-
-for (( i=0; i<${#CONFIG[@]}; i++ ));
-do
-
-    ITEM=${CONFIG[$i]}
-    ITEM_ID=`echo $ITEM | cut -d ',' -f 1`
-    ITEM_TARGET=`echo $ITEM | cut -d ',' -f 2`
-
-    if [ $ID == $ITEM_ID ]; then
-        ${TARGET}=${ITEM_TARGET}
-    fi
-
-done
-
+BACKUP=${DOWNLOAD}".backup"
+TARGET=`echo ${CONFIG} | cut -d "," -f 2`
 
 echo "[INFO]----------------A.Loading Mirrors"
 echo ""
@@ -66,7 +53,7 @@ if [[ ! $CHOISE =~ ^[0-9]+$ ]] ; then
 fi
 
 if [ ${CHOISE} -lt 1 ] || [ ${CHOISE} -gt ${#MIRRORS[@]} ];
-then 
+then
     echo "[ERROR] Array Index Out!"
     echo "[ERROR] You Can Input Min Number Is [1], And Max Number Is ["${#MIRRORS[@]}"]"
     exit 0
@@ -96,7 +83,7 @@ sed -i 's/host/'${HOST_URL}'/g' ${DOWNLOAD}
 echo ""
 echo "[INFO]----------------D.Backup Old Sources"
 echo ""
-cp -n /etc/apt/sources.list ${BACKUP}
+cp -n ${TARGET} ${BACKUP}
 
 echo ""
 echo "[INFO]----------------E.System Info"
