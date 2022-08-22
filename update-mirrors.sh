@@ -17,7 +17,7 @@ then
   VERSION_CODENAME=`lsb_release -sc`
 fi
 
-GITEE_RAW="https://gitee.com/marchocode/shell/raw/dev-centos"
+GITEE_RAW="https://gitee.com/marchocode/shell/raw/master"
 
 echo "[INFO]----------------Loading Configuration"
 echo ""
