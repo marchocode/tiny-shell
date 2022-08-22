@@ -99,6 +99,10 @@ echo "--------Backup Config: "${BACKUP}
 echo "--------Target Config: "${TARGET}
 echo ""
 
+if [ $ID == "centos" ];
+then
+  rm -f /etc/yum.repos.d/*.repo
+fi
 
 echo ""
 echo "[INFO]----------------Finish"
