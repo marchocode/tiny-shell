@@ -24,8 +24,8 @@ echo ""
 CONFIG=`wget --no-check-certificate -q -O - ${GITEE_RAW}/config | fgrep -w ${ID}`
 echo ""
 
-DOWNLOAD="~/."${ID}-${VERSION_CODENAME}
-BACKUP=${DOWNLOAD}".backup"
+DOWNLOAD="${HOME}/."${ID}-${VERSION_CODENAME}
+BACKUP=${HOME}"/mirrors.backup"
 TARGET=`echo ${CONFIG} | cut -d "," -f 2`
 
 echo "[INFO]----------------A.Loading Mirrors"
