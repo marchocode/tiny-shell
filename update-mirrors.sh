@@ -19,7 +19,11 @@ fi
 
 GITEE_RAW="https://gitee.com/marchocode/shell/raw/dev-centos"
 
+echo "[INFO]----------------Loading Configuration"
+echo ""
 CONFIG=`wget --no-check-certificate -q -O - ${GITEE_RAW}/config | fgrep -w ${ID}`
+echo ""
+
 DOWNLOAD="."${ID}-${VERSION_CODENAME}
 BACKUP=${DOWNLOAD}".backup"
 TARGET=`echo ${CONFIG} | cut -d "," -f 2`
@@ -38,7 +42,7 @@ do
 done
 
 echo ""
-echo "[INFO]----------------B.Please type your numbers"
+echo "[INFO]----------------Please type your numbers"
 echo ""
 read -p "Type(default: 1): " CHOISE
 echo ""
@@ -65,7 +69,7 @@ HOST_NAME=`echo ${HOST} | cut -d '|' -f 2`
 
 
 echo ""
-echo "[INFO]----------------C.Downloading Template"
+echo "[INFO]----------------Downloading Template"
 echo ""
 
 # download release config
@@ -81,12 +85,12 @@ fi
 sed -i 's/host/'${HOST_URL}'/g' ${DOWNLOAD}
 
 echo ""
-echo "[INFO]----------------D.Backup Old Sources"
+echo "[INFO]----------------Backup Old Sources"
 echo ""
 cp -n ${TARGET} ${BACKUP}
 
 echo ""
-echo "[INFO]----------------E.System Info"
+echo "[INFO]----------------System Info"
 echo ""
 echo "--------OS: "${ID}
 echo "--------Code: "${VERSION_CODENAME}
@@ -97,7 +101,7 @@ echo ""
 
 
 echo ""
-echo "[INFO]----------------F.Finish"
+echo "[INFO]----------------Finish"
 echo ""
 cat ${DOWNLOAD} > ${TARGET}
 echo "[INFO]----------------Now,execute comment 'apt-get update' to update your system."
