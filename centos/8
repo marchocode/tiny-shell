@@ -1,25 +1,25 @@
-[baseos]
+[baseos-host]
 name=CentOS Stream $releasever - BaseOS
 baseurl=http://host/$contentdir/$stream/BaseOS/$basearch/os/
 gpgcheck=1
 enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 
-[appstream]
+[appstream-host]
 name=CentOS Stream $releasever - AppStream
 baseurl=http://host/$contentdir/$stream/AppStream/$basearch/os/
 gpgcheck=1
 enabled=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 
-[appstream-source]
+[appstream-source-host]
 name=CentOS Stream $releasever - AppStream - Source
 baseurl=http://host/$contentdir/$stream/AppStream/source/tree/
 gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 
-[ha]
+[ha-host]
 name=CentOS Stream $releasever - HighAvailability
 #mirrorlist=http://mirrorlist.centos.org/?release=$stream&arch=$basearch&repo=HighAvailability&infra=$infra
 baseurl=http://host/$contentdir/$stream/HighAvailability/$basearch/os/
@@ -27,7 +27,7 @@ gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 
-[rt]
+[rt-host]
 name=CentOS Stream $releasever - RealTime
 #mirrorlist=http://mirrorlist.centos.org/?release=$stream&arch=$basearch&repo=RT&infra=$infra
 baseurl=http://host/$contentdir/$stream/RT/$basearch/os/
@@ -35,7 +35,7 @@ gpgcheck=1
 enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 
-[rt-source]
+[rt-source-host]
 name=CentOS Stream $releasever - RT - Source
 baseurl=http://host/$contentdir/$stream/RT/source/tree
 gpgcheck=1
@@ -43,7 +43,7 @@ enabled=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial
 
 
-[resilientstorage]
+[resilientstorage-host]
 name=CentOS Stream $releasever - ResilientStorage
 #mirrorlist=http://mirrorlist.centos.org/?release=$stream&arch=$basearch&repo=ResilientStorage&infra=$infra
 baseurl=http://host/$contentdir/$stream/ResilientStorage/$basearch/os/
