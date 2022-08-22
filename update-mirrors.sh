@@ -24,7 +24,7 @@ echo ""
 CONFIG=`wget --no-check-certificate -q -O - ${GITEE_RAW}/config | fgrep -w ${ID}`
 echo ""
 
-DOWNLOAD="."${ID}-${VERSION_CODENAME}
+DOWNLOAD="~/."${ID}-${VERSION_CODENAME}
 BACKUP=${DOWNLOAD}".backup"
 TARGET=`echo ${CONFIG} | cut -d "," -f 2`
 
