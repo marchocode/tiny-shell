@@ -11,6 +11,7 @@ mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 
 rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
 
 git clone https://github.com/coolsnowwolf/lede
+echo "src-git helloworld https://github.com/fw876/helloworld.git" >> ./lede/feeds.conf.default
 
 ./lede/scripts/feeds update -a
 ./lede/scripts/feeds install -a
