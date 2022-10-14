@@ -108,14 +108,16 @@ Type(default: 1): 2
 **Please use root Account**
 
 ```bash  
-wget --no-check-certificate -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-mirrors.sh && bash update-mirrors.sh```  
+wget --no-check-certificate -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-mirrors.sh && bash update-mirrors.sh
+```  
 
 ### :fire: Install Docker-ce
 
 一键部署安装最新版的Docker环境, 如果在国内安装，请先上方使用脚本 [自动更新国内源]()  
 
 ```bash  
-wget --no-check-certificate -O install-docker.sh https://gitee.com/marchocode/shell/raw/master/install-docker.sh && bash install-docker.sh```  
+wget --no-check-certificate -O install-docker.sh https://gitee.com/marchocode/shell/raw/master/install-docker.sh && bash install-docker.sh
+```  
 
 ### :grey_question: Issues
 
