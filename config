@@ -1,3 +1,0 @@
-centos,/etc/yum.repos.d/CentOS-Stream-BaseOS.repo
-debian,/etc/apt/sources.list
-ubuntu,/etc/apt/sources.list
