@@ -81,7 +81,14 @@ mirrors(){
     # file backup
     cp ${destination} ${backup}
 
-    #sed "s/host/${host}/g" ${repo_config} > ${destination}
+    cat ${repo_config} > .target
+    
+    sed -i "s/host/${host}/g" .target
+    sed -i "s/release/${version}/g" .target
+
+    cat .target > ${destination}
+
+    echo -e ""
     echo -e "${red}感谢您的使用,系统安装源已经被替换${plain}"
 }
 
