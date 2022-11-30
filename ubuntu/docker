@@ -1,1 +1,1 @@
-deb https://host/docker-ce/linux/ubuntu release stable
+deb [arch=arm64 signed-by=/etc/apt/docker.gpg] https://host/docker-ce/linux/ubuntu release stable

@@ -129,6 +129,9 @@ docker(){
 
     cat ${repo_config} > .target
 
+    # download grp
+    wget -q -O /etc/apt/docker.gpg http://${host}/linux/${release}/gpg
+
     sed -i "s/host/${host}/g" .target
     sed -i "s/release/${version}/g" .target
 
