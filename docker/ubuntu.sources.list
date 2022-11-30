@@ -1,1 +1,0 @@
-deb [arch=ARCHCODE signed-by=/etc/apt/keyrings/docker.gpg] https://HOST/docker-ce/linux/ubuntu ID stable

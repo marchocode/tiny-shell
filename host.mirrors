@@ -1,7 +1,8 @@
-mirrors.163.com|网易开源镜像站|https://mirrors.163.com
-mirrors.aliyun.com|阿里云镜像站|https://mirrors.aliyun.com
-mirrors.ustc.edu.cn|中国科学技术大学开源软件镜像|https://mirrors.ustc.edu.cn
-mirrors.tuna.tsinghua.edu.cn|清华大学开源软件镜像站|https://mirrors.tuna.tsinghua.edu.cn
-mirror.nju.edu.cn|南京大学开源镜像站|https://mirror.nju.edu.cn
-mirror.sjtu.edu.cn|上海交通大学开源镜像站|https://mirror.sjtu.edu.cn
-mirror.lzu.edu.cn|兰州大学开源镜像站|https://mirror.lzu.edu.cn
+mirrors.163.com|网易开源镜像站|https://mirrors.163.com|host,docker
+mirrors.aliyun.com|阿里云镜像站|https://mirrors.aliyun.com|host,docker
+mirrors.ustc.edu.cn|中国科学技术大学开源软件镜像|https://mirrors.ustc.edu.cn|host,docker
+mirrors.tuna.tsinghua.edu.cn|清华大学开源软件镜像站|https://mirrors.tuna.tsinghua.edu.cn|host,docker
+mirror.nju.edu.cn|南京大学开源镜像站|https://mirror.nju.edu.cn|host
+mirror.sjtu.edu.cn|上海交通大学开源镜像站|https://mirror.sjtu.edu.cn|host,docker
+mirror.lzu.edu.cn|兰州大学开源镜像站|https://mirror.lzu.edu.cn|host
+mirrors.cloud.tencent.com|腾讯软件源|https://mirrors.cloud.tencent.com|host,docker

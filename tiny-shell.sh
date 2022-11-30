@@ -32,14 +32,10 @@ else
     echo -e "${red}未检测到系统版本，请联系脚本作者！${plain}\n" && exit 1
 fi
 
-mirrors(){
-    clear
-    echo -e ""
-    echo -e "${green}tiny-shell ${plain}System Mirrors Check"
-    echo -e ${line}
-    echo -e ""
+# 选择镜像源
+mirrors_check(){
 
-    mirrors_list=($(cat host.mirrors))
+    mirrors_list=($(cat host.mirrors | grep $1))
     mirrors_length=$(expr ${#mirrors_list[@]} - 1)
 
     for (( i=0; i<${#mirrors_list[@]}; i++ ));
@@ -60,18 +56,38 @@ mirrors(){
     fi
 
     check_host=${mirrors_list[${CHOISE}]}
-
     host=$(echo ${check_host} | cut -d "|" -f 1)
-    repo_config="./${release}/${version}"
-    destination=$(cat mirrors.destination | grep ${release} | cut -d '|' -f 2)
-    backup=".sources.list.backup"
 
+    return 1
+}
+
+print_info(){
     echo -e ""
     echo -e "OS                   - ${release}"
     echo -e "Version              - ${version}"
     echo -e "Mirror               - ${check_host}"
     echo -e "Destination          - ${destination}"
     echo -e ${line}
+
+    echo -e ""
+    echo -e "${red}感谢您的使用,相关文件已经被替换${plain}"
+}
+
+mirrors(){
+    clear
+    echo -e ""
+    echo -e "${green}tiny-shell ${plain}System Mirrors Check"
+    echo -e ${line}
+    echo -e ""
+
+    mirrors_check mirrors
+
+    host=$(echo ${check_host} | cut -d "|" -f 1)
+    repo_config="./${release}/${version}"
+    destination=$(cat mirrors.destination | grep ${release} | cut -d '|' -f 2)
+    backup=".sources.list.backup"
+
+    print_info
 
     # check release file if exits
     if [[ ! -e repo_config ]]; then
@@ -88,21 +104,67 @@ mirrors(){
 
     cat .target > ${destination}
 
-    echo -e ""
-    echo -e "${red}感谢您的使用,系统安装源已经被替换${plain}"
+    rm .target
 }
 
-echo -e ""
-echo -e "${green}tiny-shell ${plain}使用帮助："
+docker(){
+    clear
+    echo -e ""
+    echo -e "${green}tiny-shell ${plain}Docker-ce Install"
+    echo -e ${line}
+    echo -e ""
+    
+    mirrors_check docker
 
-echo -e ${line}
-echo -e "${green}tiny-shell ${plain}一个帮助你节省一堆时间的shell脚本"
-echo -e ""
-echo -e "tiny-shell                      - 显示帮助菜单"
-echo -e "tiny-shell mirrors              - 切换国内系统镜像源(阿里云/网易/清华大学)众多镜像站收录"
-echo -e "tiny-shell docker               - 快速安装docker"
-echo -e "tiny-shell pip                  - 快速配置pip加速镜像"
-echo -e ${line}
-echo -e ""
+    repo_config="./${release}/docker"
+    destination=$(cat docker.destination | grep ${release} | cut -d '|' -f 2)
 
-mirrors
+    print_info
+    backup=".docker.list.backup"
+
+    # file backup
+    if [[ -e ${destination} ]];then 
+        cp ${destination} ${backup} 
+    fi
+
+    cat ${repo_config} > .target
+
+    sed -i "s/host/${host}/g" .target
+    sed -i "s/release/${version}/g" .target
+
+    cat .target > ${destination}
+    rm .target
+
+}
+
+menu(){
+    clear
+    echo -e ""
+    echo -e "${green}tiny-shell ${plain}"
+
+    echo -e ${line}
+    echo -e "一个帮助你节省一堆时间的shell脚本"
+    echo -e ""
+    echo -e "tiny-shell                      - 显示帮助菜单"
+    echo -e "tiny-shell mirrors              - 切换国内系统镜像源(阿里云/网易/清华大学)众多镜像站收录"
+    echo -e "tiny-shell docker               - 快速安装docker"
+    echo -e "tiny-shell pip                  - 快速配置pip加速镜像"
+    echo -e "tiny-shell maven                - 快速配置maven加速镜像"
+    echo -e ${line}
+    echo -e ""
+}
+
+if [[ $# > 0 ]]; then
+    case $1 in 
+    "mirrors")
+        mirrors
+        ;;
+    "docker")
+        docker
+        ;;        
+    *) menu
+        ;;
+    esac    
+else
+    menu
+fi
