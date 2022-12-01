@@ -179,7 +179,7 @@ menu(){
 if [[ $# > 0 ]]; then
     case $1 in 
     "system")
-        mirrors
+        system
         ;;
     "docker")
         docker
