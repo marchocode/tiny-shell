@@ -130,7 +130,8 @@ docker(){
     cat ${repo_config} > .target
 
     # download grp
-    wget -q -O /etc/apt/docker.gpg "http://${host}/docker-ce/linux/${release}/gpg"
+    wget -q -O docker.gpg "http://${host}/docker-ce/linux/${release}/gpg"
+    gpg --dearmor -o /etc/apt/docker.gpg docker.gpg
 
     sed -i "s/host/${host}/g" .target
     sed -i "s/release/${version}/g" .target
