@@ -111,7 +111,7 @@ system(){
         cat ${config} > .target
 
         sed -i "s/host/${host}/g" .target
-        sed -i "s/release/${version}/g" .target
+        sed -i "s/version/${version}/g" .target
 
         cat .target > ${destination}
         rm .target

@@ -1,1 +1,1 @@
-deb https://host/docker-ce/linux/debian release stable
+deb https://host/docker-ce/linux/debian version stable
