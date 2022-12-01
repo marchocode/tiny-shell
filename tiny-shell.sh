@@ -130,15 +130,18 @@ docker(){
     cat ${repo_config} > .target
 
     # download grp
-    wget -q -O docker.gpg "http://${host}/docker-ce/linux/${release}/gpg"
-    gpg --dearmor -o /etc/apt/docker.gpg docker.gpg
+    mkdir -p /etc/apt/keyring
+    
+    wget -q -O .docker.gpg "http://${host}/docker-ce/linux/${release}/gpg"
+    gpg --dearmor -o /etc/apt/keyring/docker.gpg .docker.gpg
 
     sed -i "s/host/${host}/g" .target
     sed -i "s/release/${version}/g" .target
 
     cat .target > ${destination}
-    rm .target
 
+    rm .target
+    rm .docker.gpg
 }
 
 menu(){
