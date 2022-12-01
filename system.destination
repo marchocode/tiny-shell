@@ -1,3 +1,7 @@
+centos8|8-CentOS-Epel.repo|/etc/yum.repos.d/CentOS-Epel.repo
+centos8|8-CentOS-Stream-Extras.repo|/etc/yum.repos.d/CentOS-Stream-Extras.repo
+centos8|default-AppStream.repo|/etc/yum.repos.d/CentOS-Stream-AppStream.repo
+centos8|default-BaseOS.repo|/etc/yum.repos.d/CentOS-Stream-BaseOS.repo
 centos|default-AppStream.repo|/etc/yum.repos.d/CentOS-Stream-AppStream.repo
 centos|default-BaseOS.repo|/etc/yum.repos.d/CentOS-Stream-BaseOS.repo
 debian|default|/etc/apt/sources.list

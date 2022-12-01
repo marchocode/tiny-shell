@@ -176,19 +176,17 @@ menu(){
     echo -e ""
 }
 
-# if [[ $# > 0 ]]; then
-#     case $1 in 
-#     "system")
-#         mirrors
-#         ;;
-#     "docker")
-#         docker
-#         ;;        
-#     *) menu
-#         ;;
-#     esac    
-# else
-#     menu
-# fi
-
-system
+if [[ $# > 0 ]]; then
+    case $1 in 
+    "system")
+        mirrors
+        ;;
+    "docker")
+        docker
+        ;;        
+    *) menu
+        ;;
+    esac    
+else
+    menu
+fi
