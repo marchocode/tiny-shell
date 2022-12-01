@@ -1,11 +1,11 @@
-deb https://host/debian/ release main contrib non-free
-#deb-src https://host/debian/ release main contrib non-free
+deb https://host/debian/ version main contrib non-free
+#deb-src https://host/debian/ version main contrib non-free
 
-deb https://host/debian/ release-updates main contrib non-free
-#deb-src https://host/debian/ release-updates main contrib non-free
+deb https://host/debian/ version-updates main contrib non-free
+#deb-src https://host/debian/ version-updates main contrib non-free
 
-deb https://host/debian/ release-backports main contrib non-free
-#deb-src https://host/debian/ release-backports main contrib non-free
+deb https://host/debian/ version-backports main contrib non-free
+#deb-src https://host/debian/ version-backports main contrib non-free
 
-deb https://host/debian-security/ release-security main contrib non-free
-#deb-src https://host/debian-security/ release-security main contrib non-free
+deb https://host/debian-security/ version-security main contrib non-free
+#deb-src https://host/debian-security/ version-security main contrib non-free

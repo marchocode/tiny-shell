@@ -151,7 +151,7 @@ docker(){
     gpg --dearmor -o /etc/apt/keyring/docker.gpg .docker.gpg
 
     sed -i "s/host/${host}/g" .target
-    sed -i "s/release/${version}/g" .target
+    sed -i "s/version/${version}/g" .target
 
     cat .target > ${destination}
 
