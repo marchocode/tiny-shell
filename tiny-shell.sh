@@ -5,6 +5,9 @@ green='\033[0;32m'
 yellow='\033[0;33m'
 plain='\033[0m'
 line="----------------------------------------------"
+backup_dir=".backup"
+
+mkdir -p ${backup_dir}
 
 [[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
 
@@ -13,6 +16,7 @@ line="----------------------------------------------"
 
 if [[ -f /etc/redhat-release ]]; then
     release="centos"
+    version=$(cat /etc/os-release | grep "VERSION_ID" | grep -Eo "[0-9]")
 elif cat /etc/issue | grep -Eqi "debian"; then
     release="debian"
     version=$(cat /etc/os-release | grep "VERSION_CODENAME" | cut -d '=' -f 2)
@@ -21,8 +25,10 @@ elif cat /etc/issue | grep -Eqi "ubuntu"; then
     version=$(cat /etc/os-release | grep "VERSION_CODENAME" | cut -d '=' -f 2)
 elif cat /etc/issue | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
+    version=$(cat /etc/os-release | grep "VERSION_ID" | grep -Eo "[0-9]")
 elif cat /proc/version | grep -Eqi "debian"; then
     release="debian"
+    version=$(cat /etc/os-release | grep "VERSION_CODENAME" | cut -d '=' -f 2)
 elif cat /proc/version | grep -Eqi "ubuntu"; then
     release="ubuntu"
     version=$(cat /etc/os-release | grep "VERSION_CODENAME" | cut -d '=' -f 2)
@@ -73,38 +79,47 @@ print_info(){
     echo -e "${red}感谢您的使用,相关文件已经被替换${plain}"
 }
 
-mirrors(){
+system(){
     clear
     echo -e ""
-    echo -e "${green}tiny-shell ${plain}System Mirrors Check"
+    echo -e "${green}tiny-shell ${plain}系统更新源快速切换"
     echo -e ${line}
     echo -e ""
 
     mirrors_check mirrors
 
-    host=$(echo ${check_host} | cut -d "|" -f 1)
-    repo_config="./${release}/${version}"
-    destination=$(cat mirrors.destination | grep ${release} | cut -d '|' -f 2)
+    destinations=($(cat system.destination | grep "${release}-${version}"))
+
+    if [[ ${#destinations[@]} -eq 0 ]]; then
+        destinations=($(cat system.destination | grep "${release}"))
+    fi
+
     backup=".sources.list.backup"
+    
+
+    for (( i=0; i<${#destinations[@]}; i++ ));
+    do
+        
+        destination=$(echo ${destinations[$i]} | cut -d "|" -f 3)
+        config="${release}/"$(echo ${destinations[$i]} | cut -d "|" -f 2)
+
+        backup="${backup_dir}/"$(basename ${destination})
+
+        # file backup
+        cp ${destination} ${backup}
+
+        cat ${config} > .target
+
+        sed -i "s/host/${host}/g" .target
+        sed -i "s/release/${version}/g" .target
+
+        cat .target > ${destination}
+        rm .target
+
+    done
 
     print_info
 
-    # check release file if exits
-    if [[ ! -e repo_config ]]; then
-        repo_config="./${release}/default"
-    fi
-
-    # file backup
-    cp ${destination} ${backup}
-
-    cat ${repo_config} > .target
-    
-    sed -i "s/host/${host}/g" .target
-    sed -i "s/release/${version}/g" .target
-
-    cat .target > ${destination}
-
-    rm .target
 }
 
 docker(){
@@ -153,7 +168,7 @@ menu(){
     echo -e "一个帮助你节省一堆时间的shell脚本"
     echo -e ""
     echo -e "tiny-shell                      - 显示帮助菜单"
-    echo -e "tiny-shell mirrors              - 切换国内系统镜像源(阿里云/网易/清华大学)众多镜像站收录"
+    echo -e "tiny-shell system               - 切换国内系统镜像源(阿里云/网易/清华大学)众多镜像站收录"
     echo -e "tiny-shell docker               - 快速安装docker"
     echo -e "tiny-shell pip                  - 快速配置pip加速镜像"
     echo -e "tiny-shell maven                - 快速配置maven加速镜像"
@@ -161,17 +176,19 @@ menu(){
     echo -e ""
 }
 
-if [[ $# > 0 ]]; then
-    case $1 in 
-    "mirrors")
-        mirrors
-        ;;
-    "docker")
-        docker
-        ;;        
-    *) menu
-        ;;
-    esac    
-else
-    menu
-fi
+# if [[ $# > 0 ]]; then
+#     case $1 in 
+#     "system")
+#         mirrors
+#         ;;
+#     "docker")
+#         docker
+#         ;;        
+#     *) menu
+#         ;;
+#     esac    
+# else
+#     menu
+# fi
+
+system

@@ -1,0 +1,4 @@
+centos|default-AppStream.repo|/etc/yum.repos.d/CentOS-Stream-AppStream.repo
+centos|default-BaseOS.repo|/etc/yum.repos.d/CentOS-Stream-BaseOS.repo
+debian|default|/etc/apt/sources.list
+ubuntu|default|/etc/apt/sources.list
