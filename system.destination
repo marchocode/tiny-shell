@@ -1,6 +1,6 @@
-centos8|8-CentOS-Stream-Extras.repo|/etc/yum.repos.d/CentOS-Linux-Extras.repo
-centos8|default-AppStream.repo|/etc/yum.repos.d/CentOS-Linux-AppStream.repo
-centos8|default-BaseOS.repo|/etc/yum.repos.d/CentOS-Linux-BaseOS.repo
+centos-8|8-CentOS-Stream-Extras.repo|/etc/yum.repos.d/CentOS-Linux-Extras.repo
+centos-8|default-AppStream.repo|/etc/yum.repos.d/CentOS-Linux-AppStream.repo
+centos-8|default-BaseOS.repo|/etc/yum.repos.d/CentOS-Linux-BaseOS.repo
 
 centos-stream8|default-AppStream.repo|/etc/yum.repos.d/CentOS-Stream-AppStream.repo
 centos-stream8|default-BaseOS.repo|/etc/yum.repos.d/CentOS-Stream-BaseOS.repo
