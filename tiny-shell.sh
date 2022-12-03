@@ -14,7 +14,10 @@ mkdir -p ${backup_dir}
 # check os
 # check code
 
-if [[ -f /etc/redhat-release ]]; then
+if test -e /etc/redhat-release && grep -Eqi "stream" /etc/redhat-release; then
+    release="centos-stream"
+    version=$(cat /etc/os-release | grep "VERSION_ID" | grep -Eo "[0-9]")
+elif [[ -f /etc/redhat-release ]]; then
     release="centos"
     version=$(cat /etc/os-release | grep "VERSION_ID" | grep -Eo "[0-9]")
 elif cat /etc/issue | grep -Eqi "debian"; then
@@ -41,6 +44,11 @@ fi
 # 选择镜像源
 mirrors_check(){
 
+    # centos-stream-8 作为centos去搜索
+    if [[ $1 = "centos-stream" && ${version} = "8" ]];then
+        release="centos"
+    fi
+
     mirrors_list=($(cat host.mirrors | grep $1))
     mirrors_length=$(expr ${#mirrors_list[@]} - 1)
 
@@ -63,15 +71,18 @@ mirrors_check(){
 
     check_host=${mirrors_list[${CHOISE}]}
     host=$(echo ${check_host} | cut -d "|" -f 1)
+    name=$(echo ${check_host} | cut -d "|" -f 2)
+    host_url=$(echo ${check_host} | cut -d "|" -f 3)
 
-    return 1
+    return 0
 }
 
 print_info(){
+
     echo -e ""
     echo -e "OS                   - ${release}"
     echo -e "Version              - ${version}"
-    echo -e "Mirror               - ${check_host}"
+    echo -e "Mirror               - ${name}|${host_url}"
     echo -e "Destination          - ${destination}"
     echo -e ${line}
 
@@ -86,7 +97,7 @@ system(){
     echo -e ${line}
     echo -e ""
 
-    mirrors_check mirrors
+    mirrors_check ${release}
 
     destinations=($(cat system.destination | grep "${release}-${version}"))
 

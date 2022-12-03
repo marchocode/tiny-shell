@@ -1,16 +1,17 @@
-## Remote Shell Scripts
+## Tiny-Shell
 
-> 一些通用的Shell脚本，如果有帮助到你，不妨点一个Star :star: 吧~~
+> 帮助你解决镜像加速问题，如果有帮助到你，不妨点一个Star :star: 吧~~
 
-### :triangular_flag_on_post: SUPPORT LINUX
+### :triangular_flag_on_post: 支持的操作系统
 
 ![](./icons/debian.png)![](./icons/ubuntu.png)![](./icons/centos.png)
 
-### :bookmark_tabs: Content
+### :bookmark_tabs: 功能概览
 
-- Automatic Config Mirrors 自动配置Linux国内加速源
-
-- Install Docker-ce 自动安装Docker环境
+- 快速切换、配置系统镜像源
+- 配置Docker镜像源，快速安装Docker环境
+- 快速配置PiP国内加速
+- 快速配置Maven国内加速
 
 ### :globe_with_meridians: Mirrors
 
@@ -23,11 +24,11 @@
 5. [南京大学开源镜像站](https://mirror.nju.edu.cn)
 6. [上海交通大学开源镜像站](https://mirror.sjtu.edu.cn)
 7. [兰州大学开源镜像站](https://mirror.lzu.edu.cn)
-8. Loading...
+8. ...
 
-### :test_tube: Test
+### :test_tube: 测试结果
 
-| :strawberry: OS | :package: Version           | :hammer: Update-Mirrors | :hammer: Install Docker |
+| :strawberry: 系统 | :package: 版本           | :hammer: 配置系统镜像源 | :hammer: 安装Docker |
 | --------------- | --------------------------- | ----------------------- | ----------------------- |
 | Debain          | 11 (bullseye) 稳定版本          | :heavy_check_mark:      | :heavy_check_mark:      |
 |                 | 10 (buster) 旧的稳定            | :heavy_check_mark:      | :heavy_check_mark:      |
@@ -39,44 +40,23 @@
 |                 | 18.04.4 LTS (Bionic Beaver) | :heavy_check_mark:      | :heavy_check_mark:      |
 |                 | 16.04.1 LTS (Xenial Xerus)  | :heavy_check_mark:      | :heavy_check_mark:      |
 |                 | 14.04.1 LTS, Trusty Tahr    | :heavy_check_mark:      | :warning:               |
-| Centos          | 9-stream                    | :heavy_check_mark:      | ?                       |
+| Centos          | 8-stream                    | :heavy_check_mark:      | ?                       |
 |                 | 8-stream                    | :heavy_check_mark:      | ?                       |
 
 ### :bookmark_tabs: Example
 
 ```shell
-@Title Automatic Update Linux Mirrors@Author Marcho@Github https://github.com/marchocode/shell  
 
-[INFO]----------------A.Loading Mirrors  
+tiny-shell 
+----------------------------------------------
+一个帮助你节省一堆时间的shell脚本
 
-1.mirrors.aliyun.com(阿里云镜像站)  
-2.mirrors.163.com(网易开源镜像站)  
-3.mirrors.ustc.edu.cn(中国科学技术大学开源软件镜像)  
-4.mirrors.tuna.tsinghua.edu.cn(清华大学开源软件镜像站)  
-5.mirror.nju.edu.cn(南京大学开源镜像站)  
-6.mirror.sjtu.edu.cn(上海交通大学开源镜像站)  
-7.mirror.lzu.edu.cn(兰州大学开源镜像站)  
-
-[INFO]----------------B.Please type your numbers  
-
-Type(default: 1): 2  
-
-[INFO]----------------C.Downloading Template  
-
-[WARN] Not Found Release file, Use Default  
-
-[INFO]----------------D.Backup Old Sources  
-
-
-[INFO]----------------E.System Info  
-
---------OS: ubuntu--------Code: jammy--------Mirrors: mirrors.163.com(网易开源镜像站)  
---------Backup Config: sources.list.old  
-
-
-[INFO]----------------F.Finish  
-
-[INFO]----------------Now,execute comment 'apt-get update' to update your system.  
+tiny-shell                      - 显示帮助菜单
+tiny-shell system               - 切换国内系统镜像源(阿里云/网易/清华大学)众多镜像站收录
+tiny-shell docker               - 快速安装docker
+tiny-shell pip                  - 快速配置pip加速镜像
+tiny-shell maven                - 快速配置maven加速镜像
+----------------------------------------------
 ```
 
 ### :hourglass_flowing_sand: Update Logs
