@@ -1,5 +1,5 @@
 [baseos]
-name=CentOS Stream $releasever - BaseOS
+name=host $releasever - BaseOS
 baseurl=http://host/$contentdir/$stream/BaseOS/$basearch/os/
 gpgcheck=1
 enabled=1

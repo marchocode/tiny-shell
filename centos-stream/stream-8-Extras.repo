@@ -1,5 +1,5 @@
 [extras]
-name=CentOS Stream $releasever - Extras
+name=host $releasever - Extras
 baseurl=http://host/$contentdir/$stream/extras/$basearch/os/
 gpgcheck=1
 enabled=1

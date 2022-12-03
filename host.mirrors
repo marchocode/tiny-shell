@@ -1,8 +1,8 @@
-mirrors.tuna.tsinghua.edu.cn|清华大学开源软件镜像站|https://mirrors.tuna.tsinghua.edu.cn|ubuntu,debian,docker,centos-stream
-mirrors.ustc.edu.cn|中国科学技术大学开源软件镜像|https://mirrors.ustc.edu.cn|ubuntu,debian,docker,centos-stream
 mirrors.cloud.tencent.com|腾讯软件源|https://mirrors.cloud.tencent.com|ubuntu,debian,docker,centos
 mirrors.163.com|网易开源镜像站|https://mirrors.163.com|ubuntu,debian,centos,docker
 mirrors.aliyun.com|阿里云镜像站|https://mirrors.aliyun.com|ubuntu,debian,docker,centos,centos-stream
+mirrors.ustc.edu.cn|中国科学技术大学开源软件镜像|https://mirrors.ustc.edu.cn|ubuntu,debian,docker,centos-stream
+mirrors.tuna.tsinghua.edu.cn|清华大学开源软件镜像站|https://mirrors.tuna.tsinghua.edu.cn|ubuntu,debian,docker,centos-stream
 mirror.nju.edu.cn|南京大学开源镜像站|https://mirror.nju.edu.cn|ubuntu,debian
 mirror.sjtu.edu.cn|上海交通大学开源镜像站|https://mirror.sjtu.edu.cn|ubuntu,debian,docker
 mirror.lzu.edu.cn|兰州大学开源镜像站|https://mirror.lzu.edu.cn|ubuntu,debian

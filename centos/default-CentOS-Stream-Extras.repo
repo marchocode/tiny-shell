@@ -1,5 +1,5 @@
 [extras]
-name=CentOS Linux $releasever - Extras
+name=host $releasever - Extras
 baseurl=http://host/$contentdir/$releasever/extras/$basearch/os/
 gpgcheck=1
 enabled=1

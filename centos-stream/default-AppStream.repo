@@ -1,5 +1,5 @@
 [appstream]
-name=CentOS Stream $releasever - AppStream
+name=host $releasever - AppStream
 baseurl=http://host/$contentdir/$stream/AppStream/$basearch/os/
 gpgcheck=1
 enabled=1
