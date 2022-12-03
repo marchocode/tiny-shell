@@ -44,12 +44,13 @@ fi
 # 选择镜像源
 mirrors_check(){
 
+    q=$1
     # centos-stream-8 作为centos去搜索
-    if [[ $1 = "centos-stream" && ${version} = "8" ]];then
-        release="centos"
+    if [[ ${q} = "centos-stream" && ${version} = "8" ]];then
+        q="centos"
     fi
 
-    mirrors_list=($(cat host.mirrors | grep $1))
+    mirrors_list=($(cat host.mirrors | grep ${q}))
     mirrors_length=$(expr ${#mirrors_list[@]} - 1)
 
     for (( i=0; i<${#mirrors_list[@]}; i++ ));
