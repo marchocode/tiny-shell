@@ -6,12 +6,30 @@
 
 ![](./icons/debian.png)![](./icons/ubuntu.png)![](./icons/centos.png)
 
-### :bookmark_tabs: 功能概览
+### tiny-shell 功能概览
 
 - 快速切换、配置系统镜像源
 - 配置Docker镜像源，快速安装Docker环境
 - 快速配置PiP国内加速
 - 快速配置Maven国内加速
+
+### :star: 快速开始
+
+```bash
+git clone https://github.com/marchocode/tiny-shell.git
+
+cd tiny-shell
+
+sudo ./tiny-shell.sh
+
+or 
+
+curl -
+
+wget -O
+
+```
+
 
 ### :globe_with_meridians: Mirrors
 
@@ -40,7 +58,7 @@
 |                 | 18.04.4 LTS (Bionic Beaver) | :heavy_check_mark:      | :heavy_check_mark:      |
 |                 | 16.04.1 LTS (Xenial Xerus)  | :heavy_check_mark:      | :heavy_check_mark:      |
 |                 | 14.04.1 LTS, Trusty Tahr    | :heavy_check_mark:      | :warning:               |
-| Centos          | 8-stream                    | :heavy_check_mark:      | ?                       |
+| Centos          | 9-stream                    | :heavy_check_mark:      | ?                       |
 |                 | 8-stream                    | :heavy_check_mark:      | ?                       |
 
 ### :bookmark_tabs: Example
@@ -74,30 +92,6 @@ tiny-shell maven                - 快速配置maven加速镜像
 - 22-08-02 添加Docker安装脚本
 
 - 22-07-31 添加Debian更新源
-
-### :checkered_flag: Automatic Config Mirrors
-
-国内Linux系统快速换系统源脚本
-
-注意：为了获得更好的速度，对所有软件包的源码地址进行了注释，有需要的进行打开。
-
-- :star: 自动识别是你的Linux系统版本，选择最合适你的源
-
-- :heart: 友好主持主流Linux系统，未来将支持更多的系统自动配置。
-
-**Please use root Account**
-
-```bash  
-wget --no-check-certificate -O update-mirrors.sh https://gitee.com/marchocode/shell/raw/master/update-mirrors.sh && bash update-mirrors.sh
-```  
-
-### :fire: Install Docker-ce
-
-一键部署安装最新版的Docker环境, 如果在国内安装，请先上方使用脚本 [自动更新国内源]()  
-
-```bash  
-wget --no-check-certificate -O install-docker.sh https://gitee.com/marchocode/shell/raw/master/install-docker.sh && bash install-docker.sh
-```  
 
 ### :grey_question: Issues
 

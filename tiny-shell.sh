@@ -103,7 +103,7 @@ system(){
     destinations=($(cat system.destination | grep "${release}-${version}"))
 
     if [[ ${#destinations[@]} -eq 0 ]]; then
-        destinations=($(cat system.destination | grep "${release}"))
+        destinations=($(cat system.destination | grep "${release}-default"))
     fi
 
     backup=".sources.list.backup"
