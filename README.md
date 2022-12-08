@@ -99,6 +99,7 @@ tiny-shell maven                - 快速配置maven加速镜像
 
 ### :link: References
 
+[Maven Setting](https://maven.apache.org/settings.html)
 [Install Docker Engine on Debian | Docker Documentation](https://docs.docker.com/engine/install/debian/)  
 
 [DebianRepository/UseThirdParty - Debian Wiki](https://wiki.debian.org/DebianRepository/UseThirdParty)  

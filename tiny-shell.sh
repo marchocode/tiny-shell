@@ -9,8 +9,6 @@ backup_dir=".backup"
 
 mkdir -p ${backup_dir}
 
-[[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
-
 # check os
 # check code
 
@@ -41,6 +39,10 @@ else
     echo -e "${red}未检测到系统版本，请联系脚本作者！${plain}\n" && exit 1
 fi
 
+root_check() {
+    [[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
+}
+
 # 选择镜像源
 mirrors_check(){
 
@@ -70,10 +72,16 @@ mirrors_check(){
         CHOISE="0"
     fi
 
+    if [[ ! ${CHOISE} =~ ^[0-9]+$ || ${CHOISE} < 0 || ${CHOISE} > ${mirrors_length} ]]; then
+        echo -e "${red}错误，请重试！${plain}" && exit 1
+    fi
+
     check_host=${mirrors_list[${CHOISE}]}
-    host=$(echo ${check_host} | cut -d "|" -f 1)
-    name=$(echo ${check_host} | cut -d "|" -f 2)
-    host_url=$(echo ${check_host} | cut -d "|" -f 3)
+
+    id=$(echo ${check_host} | cut -d "|" -f 1)
+    host=$(echo ${check_host} | cut -d "|" -f 2)
+    name=$(echo ${check_host} | cut -d "|" -f 3)
+    host_url=$(echo ${check_host} | cut -d "|" -f 4)
 
     return 0
 }
@@ -113,7 +121,7 @@ system(){
     do
         
         destination=$(echo ${destinations[$i]} | cut -d "|" -f 3)
-        config="${release}/"$(echo ${destinations[$i]} | cut -d "|" -f 2)
+        config="${release}/"$(echo ${destinations[$i]} | cut -d "|" -f 3)
 
         backup="${backup_dir}/"$(basename ${destination})
 
@@ -144,7 +152,7 @@ docker(){
     mirrors_check docker
 
     repo_config="./${release}/docker"
-    destination=$(cat docker.destination | grep ${release} | cut -d '|' -f 2)
+    destination=$(cat docker.destination | grep ${release} | cut -d '|' -f 3)
 
     print_info
     backup=".docker.list.backup"
@@ -171,6 +179,32 @@ docker(){
     rm .docker.gpg
 }
 
+
+maven(){
+    clear
+    echo -e ""
+    echo -e "${green}tiny-shell ${plain}Maven Setting"
+    echo -e ${line}
+    echo -e ""
+
+    mirrors_check maven
+
+    repo_config="./maven/${id}.xml"
+    destination="${HOME}/.m2/settings.xml"
+
+    print_info
+    backup=".setting.xml"
+
+    # file backup
+    if [[ -e ${destination} ]];then 
+        cp ${destination} ${backup_dir}"/"${backup} 
+    fi
+    
+    mkdir -p "${HOME}/.m2"
+
+    cat ${repo_config} > ${destination}
+}
+
 menu(){
     clear
     echo -e ""
@@ -191,11 +225,14 @@ menu(){
 if [[ $# > 0 ]]; then
     case $1 in 
     "system")
-        system
+        root_check && system
         ;;
     "docker")
-        docker
-        ;;        
+        root_check && docker
+        ;;
+    "maven")
+        maven
+        ;;               
     *) menu
         ;;
     esac    
