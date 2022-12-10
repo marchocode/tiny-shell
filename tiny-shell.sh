@@ -205,6 +205,32 @@ maven(){
     cat ${repo_config} > ${destination}
 }
 
+pypi(){
+    
+    clear
+    echo -e ""
+    echo -e "${green}tiny-shell ${plain}Pip Setting"
+    echo -e ${line}
+    echo -e ""
+
+    mirrors_check pypi
+
+    repo_config="./pip.conf"
+    destination="$HOME/.pip/pip.conf"
+
+    print_info
+    mkdir -p $(dirname ${destination})
+
+    cat ${repo_config} > .target
+
+    sed -i "s/HOST/${host}/g" .target
+
+    cat .target > ${destination}
+
+    rm .target
+}
+
+
 menu(){
     clear
     echo -e ""
@@ -216,7 +242,7 @@ menu(){
     echo -e "tiny-shell                      - 显示帮助菜单"
     echo -e "tiny-shell system               - 切换国内系统镜像源(阿里云/网易/清华大学)众多镜像站收录"
     echo -e "tiny-shell docker               - 快速安装docker"
-    echo -e "tiny-shell pip                  - 快速配置pip加速镜像"
+    echo -e "tiny-shell pypi                 - 快速配置pip加速镜像"
     echo -e "tiny-shell maven                - 快速配置maven加速镜像"
     echo -e ${line}
     echo -e ""
@@ -230,6 +256,9 @@ if [[ $# > 0 ]]; then
     "docker")
         root_check && docker
         ;;
+    "pypi")
+        pypi
+        ;;    
     "maven")
         maven
         ;;               
