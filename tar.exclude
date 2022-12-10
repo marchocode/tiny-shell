@@ -1,0 +1,9 @@
+.git
+.github
+.gitignore
+.backup
+.gitpod.yml
+doc
+tar.exclude
+fetch
+icons
