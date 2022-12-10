@@ -16,18 +16,23 @@
 ### :star: 快速开始
 
 ```bash
+
+# option 1
 git clone https://github.com/marchocode/tiny-shell.git
 
 cd tiny-shell
 
-sudo ./tiny-shell.sh
+./tiny-shell.sh
 
-or 
+# option 2
+# download latest release
+wget -O tiny-shell.tar https://github.com/marchocode/tiny-shell/releases/latest/download/tiny-shell.tar
 
-curl -
+mkdir -p tiny-shell && tar -xf tiny-shell.tar -C tiny-shell
 
-wget -O
+cd tiny-shell
 
+./tiny-shell.sh
 ```
 
 
