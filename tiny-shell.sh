@@ -39,11 +39,16 @@ else
     echo -e "${red}未检测到系统版本，请联系脚本作者！${plain}\n" && exit 1
 fi
 
+# clean log
+cat /dev/null > .tiny-shell.log
+
 log() {
-    echo "$1" > .tiny-shell.log
+    echo "$1" >> .tiny-shell.log
 }
 
 root_check() {
+
+    log "root_check user=${USER}"
 
     if [[ $USER != "root" ]]
     then
@@ -53,6 +58,8 @@ root_check() {
 
 # 选择镜像源
 mirrors_check(){
+
+    log "mirrors_check param=${1}"
 
     q=$1
     # centos-stream-8 作为centos去搜索
@@ -69,12 +76,15 @@ mirrors_check(){
         name=$(echo ${mirrors_list[$i]}| cut -d "|" -f 2)
 
         echo -e "${i}. ${green}${host}${plain}(${name})"
+        log "${i}. ${green}${host}${plain}(${name})"
     done
 
     echo -e ""
     echo -e ${line}
 
     read -p "请输入选择 [0-${mirrors_length}](默认0): " CHOISE
+    
+    log "user choice=${CHOISE}"
 
     if [[ -z $CHOISE ]]; then
         CHOISE="0"
@@ -85,6 +95,7 @@ mirrors_check(){
     fi
 
     check_host=${mirrors_list[${CHOISE}]}
+    log "check_host=${check_host}"
 
     id=$(echo ${check_host} | cut -d "|" -f 1)
     host=$(echo ${check_host} | cut -d "|" -f 2)
@@ -117,9 +128,11 @@ system(){
     mirrors_check ${release}
 
     destinations=($(cat system.destination | grep "${release}-${version}"))
+    log "system-destinations=${destinations}"
 
     if [[ ${#destinations[@]} -eq 0 ]]; then
         destinations=($(cat system.destination | grep "${release}-default"))
+        log "system-destinations=${destinations}"
     fi
 
     backup=".sources.list.backup"
@@ -129,7 +142,10 @@ system(){
     do
         
         destination=$(echo ${destinations[$i]} | cut -d "|" -f 3)
-        config="${release}/"$(echo ${destinations[$i]} | cut -d "|" -f 3)
+        config="${release}/"$(echo ${destinations[$i]} | cut -d "|" -f 2)
+
+        log "system-destination=${destination}"
+        log "system-config=${config}"
 
         backup="${backup_dir}/"$(basename ${destination})
 
@@ -255,6 +271,9 @@ menu(){
     echo -e ${line}
     echo -e ""
 }
+
+log "os: ${release}"
+log "version: ${version}"
 
 if [[ $# > 0 ]]; then
     case $1 in 
