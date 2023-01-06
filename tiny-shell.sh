@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 red='\033[0;31m'
 green='\033[0;32m'
@@ -39,8 +39,16 @@ else
     echo -e "${red}未检测到系统版本，请联系脚本作者！${plain}\n" && exit 1
 fi
 
+log() {
+    echo "$1" > .tiny-shell.log
+}
+
 root_check() {
-    [[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
+
+    if [[ $USER != "root" ]]
+    then
+        echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
+    fi
 }
 
 # 选择镜像源
