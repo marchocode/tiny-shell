@@ -1,3 +1,4 @@
 .idea/
 *.backup
+.tiny-shell/
 .tiny-shell.log

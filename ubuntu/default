@@ -1,11 +1,11 @@
 deb http://host/ubuntu/ version main restricted universe multiverse
-#deb-src https://host/ubuntu/ version main restricted universe multiverse
+#deb-src http://host/ubuntu/ version main restricted universe multiverse
 
 deb http://host/ubuntu/ version-security main restricted universe multiverse
-#deb-src https://host/ubuntu/ version-security main restricted universe multiverse
+#deb-src http://host/ubuntu/ version-security main restricted universe multiverse
 
 deb http://host/ubuntu/ version-updates main restricted universe multiverse
-#deb-src https://host/ubuntu/ version-updates main restricted universe multiverse
+#deb-src http://host/ubuntu/ version-updates main restricted universe multiverse
 
 deb http://host/ubuntu/ version-backports main restricted universe multiverse
-#deb-src https://host/ubuntu/ version-backports main restricted universe multiverse
+#deb-src http://host/ubuntu/ version-backports main restricted universe multiverse
