@@ -2,3 +2,4 @@
 *.backup
 .tiny-shell/
 .tiny-shell.log
+test.sh

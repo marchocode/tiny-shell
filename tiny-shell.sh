@@ -32,7 +32,11 @@ backup(){
     mkdir -p ${backup_target}
     log "Backup file ${1} to ${backup_target}"
 
-    cp ${1} ${backup_target}
+    if [[ -e ${1} ]];then 
+        cp ${1} ${backup_target}
+    else
+        warn "Backup ignore.."
+    fi
 }
 
 
@@ -184,6 +188,53 @@ system(){
 
 }
 
+docker(){
+    
+    clear
+    echo -e ""
+    echo -e "${green}tiny-shell ${plain}Docker-ce Install"
+    echo -e ${line}
+    echo -e ""
+    
+    mirrors_check docker
+
+    log "System Configuation is loading..."
+    curl -s ${BUCKET}/docker.destination > ${system_tmp}
+
+    destinations=($(cat ${system_tmp} | grep "docker-${version}"))
+
+    if [[ ${#destinations[@]} -eq 0 ]]; then
+        destinations=($(cat ${system_tmp} | grep "docker-default"))
+        warn "Loading Default Configuation."
+    fi
+
+    destination=$(echo ${destinations} | cut -d "|" -f 3)
+    config="${release}/"$(echo ${destinations} | cut -d "|" -f 2)
+
+    backup ${destination} "docker"
+
+    log "Downloading Docker Mirrors..."
+    curl -s "${BUCKET}/${config}" > "${WORKDIR}/.target"
+
+    sed -i "s/host/${host}/g" "${WORKDIR}/.target"
+    sed -i "s/version/${version}/g" "${WORKDIR}/.target"
+
+    cat "${WORKDIR}/.target" > ${destination}
+
+    # download grp
+    mkdir -p /etc/apt/keyrings
+    
+    wget -q -O .docker.gpg "http://${host}/docker-ce/linux/${release}/gpg"
+    gpg --dearmor -o /etc/apt/keyring/docker.gpg .docker.gpg
+
+    sed -i "s/host/${host}/g" "${WORKDIR}/.target"
+    sed -i "s/version/${version}/g" "${WORKDIR}/.target"
+
+    cat "${WORKDIR}/.target" > ${destination}
+
+    print_info
+}
+
 
 menu(){
     echo -e ""
@@ -212,7 +263,10 @@ if [[ $# > 0 ]]; then
         ;;    
     "maven")
         maven
-        ;;               
+        ;;
+    "reset")
+        reset
+        ;;                        
     *) menu
         ;;
     esac    

@@ -1,1 +1,1 @@
-deb https://host/docker-ce/linux/debian version stable
+deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://host/docker-ce/linux/debian version stable
