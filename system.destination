@@ -1,3 +1,4 @@
+#系统-版本                  #源文件                        #目标文件
 centos-8|default-CentOS-Stream-Extras.repo|/etc/yum.repos.d/CentOS-Linux-Extras.repo
 centos-8|default-AppStream.repo|/etc/yum.repos.d/CentOS-Linux-AppStream.repo
 centos-8|default-BaseOS.repo|/etc/yum.repos.d/CentOS-Linux-BaseOS.repo

@@ -5,7 +5,7 @@ green='\033[0;32m'
 yellow='\033[0;33m'
 plain='\033[0m'
 
-BUCKET="http://rpwp9rk6e.hd-bkt.clouddn.com"
+BUCKET="https://tiny-shell.chaobei.xyz"
 WORKDIR=".tiny-shell"
 
 mkdir -p ${WORKDIR}
