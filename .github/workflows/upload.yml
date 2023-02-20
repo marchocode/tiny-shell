@@ -13,7 +13,7 @@ jobs:
           QI_NIU_AK: ${{secrets.QI_NIU_AK}}
           QI_NIU_SK: ${{secrets.QI_NIU_SK}}
         run: |
-          curl https://github.com/qiniu/qshell/releases/download/v2.9.2/qshell-v2.9.2-linux-amd64.tar.gz && \
+          wget https://github.com/qiniu/qshell/releases/download/v2.9.2/qshell-v2.9.2-linux-amd64.tar.gz && \
           tar -xf qshell-v2.9.2-linux-amd64.tar.gz && \
           chmod +x qshell && \
           mv qshell /usr/local/bin/ && \
