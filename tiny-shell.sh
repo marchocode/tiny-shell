@@ -197,6 +197,7 @@ docker(){
     echo -e ""
     
     mirrors_check docker
+    system_tmp="${WORKDIR}/docker.destination.tmp"
 
     log "System Configuation is loading..."
     curl -s ${BUCKET}/docker.destination > ${system_tmp}
