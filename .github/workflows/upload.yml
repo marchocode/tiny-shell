@@ -1,7 +1,7 @@
 name: upload
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 jobs:
   upload-to-qiniu:
     runs-on: ubuntu-latest
@@ -17,7 +17,7 @@ jobs:
           tar -xf qshell-v2.9.2-linux-amd64.tar.gz && \
           chmod +x qshell && \
           mv qshell /usr/local/bin/ && \
-          qshell account ${QI_NIU_AK} ${QI_NIU_SK} github && \
-          qshell account
+          qshell account ${QI_NIU_AK} ${QI_NIU_SK} github
       - name: Upload
-        run: ./upload.sh
+        run: |
+          chmod +x upload.sh && ./upload.sh

@@ -16,23 +16,7 @@
 ### :star: 快速开始
 
 ```bash
-
-# option 1
-git clone https://github.com/marchocode/tiny-shell.git
-
-cd tiny-shell
-
-./tiny-shell.sh
-
-# option 2
-# download latest release
-wget -O tiny-shell.tar https://github.com/marchocode/tiny-shell/releases/latest/download/tiny-shell.tar
-
-mkdir -p tiny-shell && tar -xf tiny-shell.tar -C tiny-shell
-
-cd tiny-shell
-
-./tiny-shell.sh
+curl -s https://tiny-shell.chaobei.xyz/install.sh | bash
 ```
 
 
@@ -56,8 +40,6 @@ cd tiny-shell
 | Debain          | 11 (bullseye) 稳定版本          | :heavy_check_mark:      | :heavy_check_mark:      |
 |                 | 10 (buster) 旧的稳定            | :heavy_check_mark:      | :heavy_check_mark:      |
 |                 | 9 (stretch) 更旧的稳定           | :heavy_check_mark:      | :heavy_check_mark:      |
-|                 | 8 (jessie`expired`)已存档      | :warning:               | :x:                     |
-|                 | 7 (wheezy `expired`) 已淘汰    | :warning:               | :x:                     |
 | Ubuntu          | 22.04 LTS (Jammy Jellyfish) | :heavy_check_mark:      | :heavy_check_mark:      |
 |                 | 20.04 LTS (Focal Fossa)     | :heavy_check_mark:      | :heavy_check_mark:      |
 |                 | 18.04.4 LTS (Bionic Beaver) | :heavy_check_mark:      | :heavy_check_mark:      |
