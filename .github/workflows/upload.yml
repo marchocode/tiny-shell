@@ -1,7 +1,7 @@
 name: upload
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 jobs:
   upload-to-qiniu:
     runs-on: ubuntu-latest
