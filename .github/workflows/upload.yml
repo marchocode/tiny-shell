@@ -1,14 +1,21 @@
 name: upload
-on: [push]
+on:
+  push:
+    branches: [ main ]
 jobs:
-  Explore-GitHub-Actions:
+  upload-to-qiniu:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Install Qshell
+        run: |
+          wget https://github.com/qiniu/qshell/releases/download/v2.9.2/qshell-v2.9.2-linux-amd64.tar.gz && \
+          tar -xf qshell-v2.9.2-linux-amd64.tar.gz && \
+          chmod +x qshell && \
+          mv qshell /usr/local/bin/
       - name: Upload
         env:
           QI_NIU_AK: ${{secrets.QI_NIU_AK}}
           QI_NIU_SK: ${{secrets.QI_NIU_SK}}
-        run: printenv
-        
+        run: qshell -v && ls -l
