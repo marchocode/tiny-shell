@@ -1,0 +1,14 @@
+name: upload
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Upload
+        env:
+          QI_NIU_AK: ${{secrets.QI_NIU_AK}}
+          QI_NIU_SK: ${{secrets.QI_NIU_SK}}
+        run: printenv
+        
