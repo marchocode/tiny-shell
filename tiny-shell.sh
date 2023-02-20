@@ -235,7 +235,7 @@ docker(){
     mkdir -p /etc/apt/keyrings
     
     wget -q -O .docker.gpg "http://${host}/docker-ce/linux/${release}/gpg"
-    gpg --dearmor -o /etc/apt/keyring/docker.gpg .docker.gpg
+    gpg --dearmor -o /etc/apt/keyrings/docker.gpg .docker.gpg
 
     sed -i "s/host/${host}/g" "${WORKDIR}/.target"
     sed -i "s/version/${version}/g" "${WORKDIR}/.target"
