@@ -1,8 +1,0 @@
-deb http://host/debian/ jessie main non-free contrib
-#deb-src http://host/debian/ jessie main non-free contrib
-
-deb http://host/debian-archive/debian/ jessie-backports main non-free contrib
-#deb-src http://host/debian-archive/debian/ jessie-backports main non-free contrib
-
-deb http://host/debian-security/ jessie/updates main non-free contrib
-#deb-src http://host/debian-security/ jessie/updates main non-free contrib

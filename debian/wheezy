@@ -1,8 +1,0 @@
-deb http://host/debian-archive/debian wheezy main non-free contrib
-deb-src http://host/debian-archive/debian wheezy main non-free contrib
-
-deb http://host/debian-archive/debian wheezy-backports main non-free contrib
-deb-src http://host/debian-archive/debian wheezy-backports main non-free contrib
-
-deb http://host/debian-archive/debian-security wheezy/updates main non-free contrib
-deb-src http://host/debian-archive/debian-security wheezy/updates main non-free contrib
