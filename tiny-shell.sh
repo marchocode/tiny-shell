@@ -202,10 +202,10 @@ docker(){
     log "System Configuation is loading..."
     curl -s ${BUCKET}/docker.destination > ${system_tmp}
 
-    destinations=($(cat ${system_tmp} | grep "docker-${version}"))
+    destinations=($(cat ${system_tmp} | grep "${release}-${version}"))
 
     if [[ ${#destinations[@]} -eq 0 ]]; then
-        destinations=($(cat ${system_tmp} | grep "docker-default"))
+        destinations=($(cat ${system_tmp} | grep "${release}-default"))
         warn "Loading Default Configuation."
     fi
 
