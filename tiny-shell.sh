@@ -10,14 +10,19 @@ WORKDIR=".tiny-shell"
 
 mkdir -p ${WORKDIR}
 
-log() {
+info() {
     date=$(date +"%Y-%m-%d %H:%M:%S")
-    echo -e "${date}  INFO   ${1}"
+    echo -e "${date}  INFO    ${1}"
+}
+
+debug(){
+    date=$(date +"%Y-%m-%d %H:%M:%S")
+    echo -e "${date}  DEBUG   ${1}"
 }
 
 warn(){
     date=$(date +"%Y-%m-%d %H:%M:%S")
-    echo -e "${date}  ${yellow}WARN   ${1}${plain}"
+    echo -e "${date}  ${yellow}WARN    ${1}${plain}"
 }
 
 error(){
@@ -30,7 +35,7 @@ backup(){
     backup_target="${WORKDIR}/${2}"
 
     mkdir -p ${backup_target}
-    log "Backup file ${1} to ${backup_target}"
+    info "Backup file ${1} to ${backup_target}"
 
     if [[ -e ${1} ]];then 
         cp ${1} ${backup_target}
@@ -42,7 +47,7 @@ backup(){
 
 root_check() {
 
-    log "Check Current User = ${USER}"
+    info "Check Current User = ${USER}"
 
     if [[ $USER != "root" ]]
     then
@@ -97,7 +102,7 @@ mirrors_check(){
         q="centos"
     fi
 
-    log "Mirrors Downloading...\n"
+    info "Mirrors Downloading...\n"
 
     mirrors_list=($(curl -s ${BUCKET}/host.mirrors | grep ${q}))
     mirrors_length=$(expr ${#mirrors_list[@]} - 1)
@@ -129,19 +134,19 @@ mirrors_check(){
     name=$(echo ${check_host} | cut -d "|" -f 3)
     host_url=$(echo ${check_host} | cut -d "|" -f 4)
 
-    log "id=${id}"
-    log "host=${host}"
+    info "id=${id}"
+    info "host=${host}"
 
     return 0
 }
 
 print_info(){
 
-    log ""
-    log "OS            - ${release}"
-    log "Version       - ${version}"
-    log "Mirror        - ${name}|${host_url}"
-    log "Destination   - ${destination}"
+    info ""
+    info "OS            - ${release}"
+    info "Version       - ${version}"
+    info "Mirror        - ${name}|${host_url}"
+    info "Destination   - ${destination}"
 
 }
 
@@ -156,7 +161,7 @@ system(){
     mirrors_check ${release}
     system_tmp="${WORKDIR}/system.destination.tmp"
 
-    log "System Configuation is loading..."
+    info "System Configuation is loading..."
     curl -s ${BUCKET}/system.destination > ${system_tmp}
 
     destinations=($(cat ${system_tmp} | grep "${release}-${version}"))
@@ -174,7 +179,7 @@ system(){
 
         backup ${destination} "system"
 
-        log "Downloading System Mirrors..."
+        info "Downloading System Mirrors..."
         curl -s "${BUCKET}/${config}" > "${WORKDIR}/.target"
 
         sed -i "s/host/${host}/g" "${WORKDIR}/.target"
@@ -199,7 +204,7 @@ docker(){
     mirrors_check docker
     system_tmp="${WORKDIR}/docker.destination.tmp"
 
-    log "System Configuation is loading..."
+    info "System Configuation is loading..."
     curl -s ${BUCKET}/docker.destination > ${system_tmp}
 
     destinations=($(cat ${system_tmp} | grep "${release}-${version}"))
@@ -209,13 +214,17 @@ docker(){
         warn "Loading Default Configuation."
     fi
 
+    debug "${destinations}"
     destination=$(echo ${destinations} | cut -d "|" -f 3)
     config="${release}/"$(echo ${destinations} | cut -d "|" -f 2)
 
+    debug "destination=${destination}"
+    debug "config=${config}"
     backup ${destination} "docker"
 
-    log "Downloading Docker Mirrors..."
+    info "Downloading Docker Mirrors..."
     curl -s "${BUCKET}/${config}" > "${WORKDIR}/.target"
+    debug "download url=${BUCKET}/${config}"
 
     sed -i "s/host/${host}/g" "${WORKDIR}/.target"
     sed -i "s/version/${version}/g" "${WORKDIR}/.target"
