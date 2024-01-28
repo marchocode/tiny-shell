@@ -1,1 +1,1 @@
-deb [signed-by=/etc/apt/keyring/docker.gpg] http://host/docker-ce/linux/ubuntu version stable
+deb [signed-by=/etc/apt/keyrings/docker.gpg] http://host/docker-ce/linux/ubuntu version stable

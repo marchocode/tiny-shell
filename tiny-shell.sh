@@ -5,10 +5,9 @@ green='\033[0;32m'
 yellow='\033[0;33m'
 plain='\033[0m'
 
-BUCKET="https://tiny-shell.chaobei.xyz"
+pwd=$(pwd)
+BUCKET="file:${pwd}"
 WORKDIR=".tiny-shell"
-
-mkdir -p ${WORKDIR}
 
 info() {
     date=$(date +"%Y-%m-%d %H:%M:%S")
@@ -67,32 +66,41 @@ elif [[ -f /etc/redhat-release ]]; then
 elif cat /etc/issue | grep -Eqi "debian"; then
     release="debian"
     version=$(cat /etc/os-release | grep "VERSION_CODENAME" | cut -d '=' -f 2)
+    architecture=$(dpkg --print-architecture)
 elif cat /etc/issue | grep -Eqi "ubuntu"; then
     release="ubuntu"
     version=$(cat /etc/os-release | grep "VERSION_CODENAME" | cut -d '=' -f 2)
+    architecture=$(dpkg --print-architecture)
 elif cat /etc/issue | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
     version=$(cat /etc/os-release | grep "VERSION_ID" | grep -Eo "[0-9]")
 elif cat /proc/version | grep -Eqi "debian"; then
     release="debian"
     version=$(cat /etc/os-release | grep "VERSION_CODENAME" | cut -d '=' -f 2)
+    architecture=$(dpkg --print-architecture)
 elif cat /proc/version | grep -Eqi "ubuntu"; then
     release="ubuntu"
     version=$(cat /etc/os-release | grep "VERSION_CODENAME" | cut -d '=' -f 2)
+    architecture=$(dpkg --print-architecture)
 elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
 else
     error "The script does't support your system. Please commit your request! \n" && exit 1
 fi
 
-yum(){
-    echo ""
-}
 
-apt(){
-    host="\/\/mirrors.tencent.com\/"
-    sed -E "s/\/\/[a-zA-Z.0-9]+\//${host}/g" /etc/apt/sources.list
-}
+# init.
+if [[ ! -e ${WORKDIR} ]]; then
+
+    info "init package."
+    if [[ ${release} = "ubuntu" ]];then
+        apt-get -y install apt-transport-https ca-certificates curl wget gnupg > /dev/null
+    fi
+
+fi
+
+mkdir -p ${WORKDIR}
+
 
 mirrors_check(){
 
@@ -193,8 +201,27 @@ system(){
 
 }
 
-docker(){
+infomation() {
+
+    clear
+    echo -e ""
+    echo -e "${green}tiny-shell ${plain}System Infomations"
+    echo -e ${line}
+    echo -e ""
+
+    info "OS            - ${release}"
+    info "Version       - ${version}"
+    info "Bucket        - ${BUCKET}"
+    info "arch          - ${architecture}"
+}
+
+dockerce(){
     
+    if command -v docker > /dev/null ; then
+        warn "You have installed Docker. Script exit."
+        return
+    fi
+
     clear
     echo -e ""
     echo -e "${green}tiny-shell ${plain}Docker-ce Install"
@@ -231,18 +258,20 @@ docker(){
 
     cat "${WORKDIR}/.target" > ${destination}
 
-    # download grp
+    # download grp 
+    # /etc/apt/keyrings/docker.asc
     mkdir -p /etc/apt/keyrings
+    curl -fsSL "http://${host}/docker-ce/linux/${release}/gpg" | gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
     
-    wget -q -O .docker.gpg "http://${host}/docker-ce/linux/${release}/gpg"
-    gpg --dearmor -o /etc/apt/keyrings/docker.gpg .docker.gpg
-
     sed -i "s/host/${host}/g" "${WORKDIR}/.target"
     sed -i "s/version/${version}/g" "${WORKDIR}/.target"
 
     cat "${WORKDIR}/.target" > ${destination}
 
     print_info
+
+    apt-get update > /dev/null && apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin > /dev/null
+    docker run hello-world
 }
 
 
@@ -254,6 +283,7 @@ menu(){
     echo -e ""
     echo -e "./tiny-shell                      - Help"
     echo -e "./tiny-shell system               - Check System Mirrors"
+    echo -e "./tiny-shell info                 - Check Your System Infomations."
     echo -e "./tiny-shell docker               - Install Docker Environment"
     echo -e "./tiny-shell pypi                 - Configuating Python Package Manager's Mirrors"
     echo -e "./tiny-shell maven                - Maven's Mirrors Check"
@@ -266,11 +296,14 @@ if [[ $# > 0 ]]; then
         root_check && system
         ;;
     "docker")
-        root_check && docker
+        root_check && dockerce
         ;;
+    "info")
+        infomation
+        ;;       
     "pypi")
         pypi
-        ;;    
+        ;;        
     "maven")
         maven
         ;;
