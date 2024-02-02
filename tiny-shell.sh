@@ -94,7 +94,11 @@ if [[ ! -e ${WORKDIR} ]]; then
 
     info "init package."
     if [[ ${release} = "ubuntu" ]];then
-        apt-get -y install apt-transport-https ca-certificates curl wget gnupg > /dev/null
+        apt update > /dev/null && apt-get -y install apt-transport-https ca-certificates curl wget gnupg > /dev/null
+    elif [[ ${release} = "debian" ]];then
+        apt update > /dev/null && apt-get -y ca-certificates curl wget > /dev/null
+    else 
+        info "Nothing to do."
     fi
 
 fi
