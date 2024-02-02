@@ -199,6 +199,7 @@ system(){
 
     print_info
 
+    info "Success...You can use apt or yum command to update your system."
 }
 
 infomation() {
@@ -259,10 +260,14 @@ dockerce(){
     cat "${WORKDIR}/.target" > ${destination}
 
     # download grp 
-    # /etc/apt/keyrings/docker.asc
+    # /etc/apt/keyrings/docker.gpg
     mkdir -p /etc/apt/keyrings
-    curl -fsSL "http://${host}/docker-ce/linux/${release}/gpg" | gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
+    curl -fsSL -o /etc/apt/keyrings/gpg "http://${host}/docker-ce/linux/${release}/gpg"
     
+    if [[ $release = "ubuntu" ]]; then
+        gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg /etc/apt/keyrings/gpg
+    fi
+
     sed -i "s/host/${host}/g" "${WORKDIR}/.target"
     sed -i "s/version/${version}/g" "${WORKDIR}/.target"
 
@@ -283,12 +288,12 @@ menu(){
 
     echo -e "A Simple Shell Script To Help You For Work"
     echo -e ""
-    echo -e "./tiny-shell                      - Help"
-    echo -e "./tiny-shell system               - Check System Mirrors"
-    echo -e "./tiny-shell info                 - Check Your System Infomations."
-    echo -e "./tiny-shell docker               - Install Docker Environment"
-    echo -e "./tiny-shell pypi                 - Configuating Python Package Manager's Mirrors"
-    echo -e "./tiny-shell maven                - Maven's Mirrors Check"
+    echo -e "./tiny-shell.sh                      - Help"
+    echo -e "./tiny-shell.sh system               - Check System Mirrors"
+    echo -e "./tiny-shell.sh info                 - Check Your System Infomations."
+    echo -e "./tiny-shell.sh docker               - Install Docker Environment"
+    echo -e "./tiny-shell.sh pypi                 - Configuating Python Package Manager's Mirrors"
+    echo -e "./tiny-shell.sh maven                - Maven's Mirrors Check"
     echo -e ""
 }
 
