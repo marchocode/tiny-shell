@@ -270,8 +270,10 @@ dockerce(){
 
     print_info
 
+    info "Install Docker..."
+
     apt-get update > /dev/null && apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin > /dev/null
-    docker run hello-world
+    docker version && info "Install Docker Success..."
 }
 
 
