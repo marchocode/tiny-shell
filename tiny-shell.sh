@@ -96,7 +96,7 @@ if [[ ! -e ${WORKDIR} ]]; then
     if [[ ${release} = "ubuntu" ]];then
         apt update > /dev/null && apt-get -y install apt-transport-https ca-certificates curl wget gnupg > /dev/null
     elif [[ ${release} = "debian" ]];then
-        apt update > /dev/null && apt-get -y ca-certificates curl wget > /dev/null
+        apt update > /dev/null && apt-get -y install ca-certificates curl wget > /dev/null
     else 
         info "Nothing to do."
     fi
